@@ -31,7 +31,11 @@ func _on_table_colider_area_exited(area: Area2D) -> void:
 func start_animation():
 	sprite.play()
 
+func picked():
+	$Sprite.transform.scale = 1
+
 func setup(i, num):
+	$Sprite.transform.scale = 0.25
 	$Sprite.animation = animations[num]
 	position = Vector2(70, i*142 + 112)
 	init_pos = position

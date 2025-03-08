@@ -8,7 +8,7 @@ var items = null
 var occupied = null
 var collided = 0
 var rest = 0
-var time = 3
+var time = 5
 var end = false
 var max_type = 4
 @onready var timer = $Timer
@@ -44,9 +44,11 @@ func _input(event: InputEvent) -> void:
 				for it in items:
 					if it.mouse_in and it.movable:
 						dragging = it
+						dragging.scale = 1
 			elif dragging:
 				if Coll.collisions >= 1 or !dragging.on_table:
 					dragging.position = dragging.init_pos
+					dragging.scale = 0.25
 				else: 
 					dragging.init_pos = dragging.position
 					if (dragging.from >= 0):

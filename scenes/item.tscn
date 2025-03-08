@@ -13,9 +13,8 @@ size = Vector2(4, 3)
 script = ExtResource("1_s8enn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("1_4gq7n")
-animation = &"book"
+animation = &"pc"
 
 [node name="Col" type="CollisionShape2D" parent="."]
 position = Vector2(1, 3)
