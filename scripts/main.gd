@@ -8,9 +8,11 @@ var items = null
 var occupied = null
 var collided = 0
 var rest = 0
-var time = 20
+var time = 1
 var end = false
 var max_type = 4
+var random = RandomNumberGenerator.new()
+var probs = [1,2,3,4,5]
 @onready var timer = $Timer
 @onready var label = $Label
 
@@ -18,16 +20,19 @@ var max_type = 4
 func _ready() -> void:
 	var n = 5
 	items = []
-	occupied = []
-	for i in range(n):
-		var temp = item.instantiate()
-		temp.setup(i,randi_range(0,max_type))
-		occupied.append(true)
-		add_child(temp)
-		items.append(temp)
+	occupied = [true, true, true, true, true]
+	for i in range(n): create_item(i)
 	timer.wait_time = time
 	timer.start(0)
 	rest = time
+	
+func create_item(i):
+	var temp = item.instantiate()
+	temp.setup(i, random.rand_weighted(probs))
+	add_child(temp)
+	items.append(temp)
+	occupied[i] = true
+	
 
 func _process(delta: float) -> void:
 	if (!end):
@@ -63,14 +68,9 @@ func _input(event: InputEvent) -> void:
 func _on_timer_timeout() -> void:
 	var valid = false
 	for i in len(occupied):
-		if !(occupied[i]):
-			var temp = item.instantiate()
-			temp.setup(i,randi_range(0,max_type))
-			occupied[i] = true
-			add_child(temp)
-			items.append(temp)
-			valid = true
-			break
+		#if !(occupied[i]):
+		create_item(i)
+			#break
 	if valid:
 		rest = time
 		timer.start(0)
