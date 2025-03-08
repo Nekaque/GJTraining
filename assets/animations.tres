@@ -68,6 +68,11 @@ region = Rect2(0, 0, 300, 300)
 
 [resource]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"cafe zmrd",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uuog8")
