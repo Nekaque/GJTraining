@@ -8,7 +8,7 @@ var items = null
 var occupied = null
 var collided = 0
 var rest = 0
-var time = 5
+var time = 3
 var end = false
 var max_type = 4
 @onready var timer = $Timer
@@ -25,6 +25,7 @@ func _ready() -> void:
 		occupied.append(true)
 		add_child(temp)
 		items.append(temp)
+	timer.wait_time = time
 	timer.start(0)
 	rest = time
 
@@ -53,7 +54,7 @@ func _input(event: InputEvent) -> void:
 						dragging.from = -1
 						dragging.start_animation()
 				dragging = null
-	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(90)
+	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 
 
 func _on_timer_timeout() -> void:
