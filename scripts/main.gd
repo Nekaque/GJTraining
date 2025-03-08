@@ -5,20 +5,27 @@ var dragging = null
 var items = []
 var occupied  = [true, true, true, true, true]
 var rest = 0
-var time = 20
-var max_type = 4
+var score = 0
+var time = 5
 var random = RandomNumberGenerator.new()
-var probs = [4, 5, 2, 2, 1]
+var probs = [4, 5, 0, 0, 0, 4, 4,4 ,4]
 var shake = false
 @onready var timer = $Timer
 @onready var label = $Label
 
 func _ready() -> void:
-	var n = 5
-	for i in range(n): create_item(i)
+	generate()
+	get_tree().paused = true
+
+func generate():
+	for i in len(occupied): create_item(i)
 	timer.wait_time = time
 	timer.start(0)
 	rest = time
+	var t = int(rest)
+	label.text = 'Next item in '+str(t)
+	$Score.text = 'Score: '+str(score)
+	
 
 func create_item(i):
 	var temp = item.instantiate()
@@ -33,6 +40,12 @@ func shake_screen():
 	const max_roll = 0.5
 	$Cam.rotation = max_roll * order * randfn(-1, 1)
 	$Cam.position = Vector2(512+randfn(-1,1.2)*max_shake*order, 384+randfn(-1,1.2)*max_shake*order)
+	
+func shaking():
+	shake = true
+	var tt = get_tree().create_timer(0.3)
+	await tt.timeout
+	shake = false
 
 func _process(delta: float) -> void:
 	if shake: shake_screen()
@@ -43,29 +56,26 @@ func _process(delta: float) -> void:
 	label.text = 'Next item in '+str(t)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT :
-			if event.is_action_pressed('click'):
-				for it in items:
-					if it.mouse_in and it.movable:
-						dragging = it
-						dragging.global_scale = Vector2(1,1)
-			elif dragging:
-				if Coll.collisions >= 1 or !dragging.on_table:
-					dragging.position = dragging.init_pos
-					dragging.global_scale = Vector2(0.25,0.25)
-				else: 
-					dragging.init_pos = dragging.position
-					if (dragging.from >= 0):
-						occupied[dragging.from] = false
-						dragging.from = -1
-						dragging.start_animation()
-						shake = true
-						dragging = null
-						var tt = get_tree().create_timer(0.3)
-						await tt.timeout
-						shake = false
-					else: dragging = null
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.is_action_pressed('click'):
+			for it in items:
+				if it.mouse_in and it.movable:
+					dragging = it
+					dragging.global_scale = Vector2(1,1)
+		elif dragging:
+			if Coll.collisions >= 1 or !dragging.on_table:
+				dragging.position = dragging.init_pos
+				dragging.global_scale = Vector2(0.25,0.25)
+			else: 
+				dragging.init_pos = dragging.position
+				if (dragging.from >= 0):
+					score+=1
+					$Score.text = 'Score: '+str(score)
+					occupied[dragging.from] = false
+					dragging.from = -1
+					dragging.start_animation()
+					shaking()
+				dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 
 
@@ -81,3 +91,19 @@ func _on_timer_timeout() -> void:
 		timer.start(0)
 	else:
 		label.text = 'get rekt'
+		$End.visible = true
+		get_tree().paused = true
+
+
+func _on_texture_button_pressed() -> void:
+	$Tutorial.visible = false
+	get_tree().paused = false
+
+
+func _on_button_pressed() -> void:
+	get_tree().paused = false
+	while len(items) > 0:
+		var it = items.pop_back()
+		it.queue_free()
+	$End.visible = false
+	generate()
