@@ -1,6 +1,14 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://i3q5stne2j80"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://i3q5stne2j80"]
 
 [ext_resource type="Texture2D" uid="uid://dp26t5k7f8ffo" path="res://assets/items_temp.png" id="1_m1nji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuog8"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(0, 1500, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv1mp"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(261, 558, 87, 93)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qah5"]
 atlas = ExtResource("1_m1nji")
@@ -30,6 +38,22 @@ region = Rect2(426, 320, 213, 160)
 atlas = ExtResource("1_m1nji")
 region = Rect2(0, 0, 300, 300)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkva1"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(0, 1113, 509, 371)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx456"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(190, 892, 190, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37xww"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(0, 892, 190, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n06b"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(0, 484, 208, 242)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_m1nji"]
 atlas = ExtResource("1_m1nji")
 region = Rect2(300, 0, 300, 300)
@@ -46,6 +70,22 @@ region = Rect2(0, 0, 300, 300)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uuog8")
+}],
+"loop": true,
+"name": &"book",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv1mp")
+}],
+"loop": true,
+"name": &"cactus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7qah5")
 }, {
 "duration": 1.0,
@@ -56,7 +96,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"can",
-"speed": 5.0
+"speed": 0.7
 }, {
 "frames": [{
 "duration": 1.0,
@@ -78,6 +118,38 @@ animations = [{
 }],
 "loop": true,
 "name": &"empty_plate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkva1")
+}],
+"loop": true,
+"name": &"pc",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx456")
+}],
+"loop": true,
+"name": &"pen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37xww")
+}],
+"loop": true,
+"name": &"pencil",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n06b")
+}],
+"loop": true,
+"name": &"plant",
 "speed": 5.0
 }, {
 "frames": [{
