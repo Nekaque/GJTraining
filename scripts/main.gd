@@ -20,9 +20,7 @@ func _ready() -> void:
 	occupied = []
 	for i in range(n):
 		var temp = item.instantiate()
-		temp.position = Vector2(70, i*142 + 112)
-		temp.init_pos = temp.position
-		temp.from = i
+		temp.setup(i,randi_range(0,1))
 		occupied.append(true)
 		add_child(temp)
 		items.append(temp)
@@ -61,9 +59,7 @@ func _on_timer_timeout() -> void:
 	for i in len(occupied):
 		if !(occupied[i]):
 			var temp = item.instantiate()
-			temp.position = Vector2(70, i*142 + 112)
-			temp.init_pos = temp.position
-			temp.from = i
+			temp.setup(i,randi_range(0,1))
 			occupied[i] = true
 			add_child(temp)
 			items.append(temp)
