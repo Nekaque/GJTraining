@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dqcrhstta70pp"]
+
+[ext_resource type="Texture2D" uid="uid://dp26t5k7f8ffo" path="res://assets/items_temp.png" id="1_m1nji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyuu1"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1nji"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h81b"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(600, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q10up"]
+atlas = ExtResource("1_m1nji")
+region = Rect2(0, 0, 300, 300)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyuu1")
+}],
+"loop": true,
+"name": &"empty_plate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1nji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h81b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q10up")
+}],
+"loop": false,
+"name": &"steak_plate",
+"speed": 0.5
+}]
