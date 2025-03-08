@@ -1,30 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://v837py5854ak"]
+[gd_scene load_steps=5 format=3 uid="uid://v837py5854ak"]
 
 [ext_resource type="SpriteFrames" uid="uid://i3q5stne2j80" path="res://assets/animations.tres" id="1_4gq7n"]
 [ext_resource type="Script" uid="uid://bjyh08j2u82g6" path="res://scripts/item.gd" id="1_s8enn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8enn"]
 radius = 30.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6muww"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vljjh"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ro5b8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d265e"]
-size = Vector2(101, 67)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5vp5n"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4387"]
-size = Vector2(44, 63)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0cwl"]
-size = Vector2(9.99343, 46.8565)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr48l"]
-size = Vector2(44.9841, 4.85472)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8enn"]
 size = Vector2(4, 3)
@@ -35,54 +15,11 @@ script = ExtResource("1_s8enn")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("1_4gq7n")
-animation = &"pencil"
+animation = &"steak_plate"
 
-[node name="SteakCollider" type="CollisionShape2D" parent="."]
-visible = false
+[node name="Col" type="CollisionShape2D" parent="."]
 position = Vector2(1, 3)
 shape = SubResource("CircleShape2D_s8enn")
-
-[node name="CoffeeCollider" type="CollisionShape2D" parent="."]
-visible = false
-scale = Vector2(1.36, 1.28)
-shape = SubResource("CircleShape2D_6muww")
-
-[node name="CanCollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(5.96046e-08, 1)
-scale = Vector2(1.12, 1.12622)
-shape = SubResource("CircleShape2D_vljjh")
-
-[node name="PlantCollider" type="CollisionShape2D" parent="."]
-visible = false
-scale = Vector2(1.8, 1.8)
-shape = SubResource("CircleShape2D_ro5b8")
-
-[node name="PcCollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1.5, 2.5)
-shape = SubResource("RectangleShape2D_d265e")
-
-[node name="CactusCollider" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_5vp5n")
-
-[node name="BookCollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_c4387")
-
-[node name="PenCollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0.999208, -0.37563)
-rotation = 0.00637114
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_v0cwl")
-
-[node name="PencilCollider" type="CollisionShape2D" parent="."]
-position = Vector2(1.42369, -1.51044)
-rotation = -1.57813
-shape = SubResource("RectangleShape2D_xr48l")
 
 [node name="TableColider" type="Area2D" parent="."]
 

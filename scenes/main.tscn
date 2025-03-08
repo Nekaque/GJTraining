@@ -31,58 +31,6 @@ mouse_force_pass_scroll_events = false
 theme_override_styles/disabled = ExtResource("3_jyhfs")
 disabled = true
 
-[node name="B2" type="Button" parent="."]
-visible = false
-offset_left = 11.0
-offset_top = 199.0
-offset_right = 131.0
-offset_bottom = 319.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
-theme_override_styles/disabled = ExtResource("3_jyhfs")
-disabled = true
-
-[node name="B3" type="Button" parent="."]
-visible = false
-offset_left = 11.0
-offset_top = 341.0
-offset_right = 131.0
-offset_bottom = 461.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
-theme_override_styles/disabled = ExtResource("3_jyhfs")
-disabled = true
-
-[node name="B4" type="Button" parent="."]
-visible = false
-offset_left = 11.0
-offset_top = 483.0
-offset_right = 131.0
-offset_bottom = 603.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
-theme_override_styles/disabled = ExtResource("3_jyhfs")
-disabled = true
-
-[node name="B5" type="Button" parent="."]
-visible = false
-offset_left = 11.0
-offset_top = 625.0
-offset_right = 131.0
-offset_bottom = 745.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
-theme_override_styles/disabled = ExtResource("3_jyhfs")
-disabled = true
-
 [node name="Table" type="Area2D" parent="."]
 position = Vector2(519, 400)
 
@@ -103,4 +51,18 @@ offset_right = 129.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 361.0
+offset_top = 5.0
+offset_right = 476.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+text = "Rotate"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

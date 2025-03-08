@@ -52,6 +52,7 @@ func _input(event: InputEvent) -> void:
 						dragging.from = -1
 						dragging.start_animation()
 				dragging = null
+	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(90)
 
 
 func _on_timer_timeout() -> void:
@@ -71,3 +72,7 @@ func _on_timer_timeout() -> void:
 	else:
 		end = true
 		label.text = 'get rekt'
+
+
+func _on_button_pressed() -> void:
+	pass
