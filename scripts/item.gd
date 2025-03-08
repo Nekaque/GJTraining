@@ -10,21 +10,16 @@ var animations = ['steak', 'book', 'coffee', 'can', 'pc']
 @onready var sprite = $Sprite
 var type = -1
 
-func _ready() -> void:
-	pass
+func _ready() -> void: pass
 
-func _on_mouse_entered() -> void:
-	mouse_in = true
+func _on_mouse_entered() -> void: mouse_in = true
 
-func _on_mouse_exited() -> void:
-	mouse_in = false
+func _on_mouse_exited() -> void: mouse_in = false
 
 func _on_area_entered(area: Area2D) -> void:
-	print(area.get_groups())
 	if (area.is_in_group('Items')): Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
-	print(area.get_groups())
 	if (area.is_in_group('Items')): Coll.collisions -=1
 
 func _on_table_colider_area_entered(area: Area2D) -> void:
@@ -33,8 +28,7 @@ func _on_table_colider_area_entered(area: Area2D) -> void:
 func _on_table_colider_area_exited(area: Area2D) -> void:
 	if (area.name == 'Table'): on_table = false
 	
-func start_animation():
-	sprite.play()
+func start_animation(): sprite.play()
 
 func setup(i, num):
 	_ready()
@@ -44,7 +38,6 @@ func setup(i, num):
 	colliders[num].disabled = false
 	position = Vector2(70, i*142 + 112)
 	init_pos = position
-	
 	from = i
 	type = num
 	

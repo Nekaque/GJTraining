@@ -1,33 +1,25 @@
 extends Node
 
-var pressed = false
-var entered = false
 var item = preload("res://scenes/item.tscn")
 var dragging = null
-var items = null
-var occupied = null
-var collided = 0
+var items = []
+var occupied  = [true, true, true, true, true]
 var rest = 0
 var time = 20
-var end = false
 var max_type = 4
 var random = RandomNumberGenerator.new()
-var probs = [1, 2, 3, 4, 5]
+var probs = [4, 5, 2, 2, 1]
 var shake = false
-const max_shake = 5
-const max_roll = 0.5
 @onready var timer = $Timer
 @onready var label = $Label
 
 func _ready() -> void:
 	var n = 5
-	items = []
-	occupied = [true, true, true, true, true]
 	for i in range(n): create_item(i)
 	timer.wait_time = time
 	timer.start(0)
 	rest = time
-	
+
 func create_item(i):
 	var temp = item.instantiate()
 	temp.setup(i, random.rand_weighted(probs))
@@ -35,21 +27,23 @@ func create_item(i):
 	items.append(temp)
 	occupied[i] = true
 
+func shake_screen():
+	var order = 0.3
+	const max_shake = 5
+	const max_roll = 0.5
+	$Cam.rotation = max_roll * order * randfn(-1, 1)
+	$Cam.position = Vector2(512+randfn(-1,1.2)*max_shake*order, 384+randfn(-1,1.2)*max_shake*order)
+
 func _process(delta: float) -> void:
-	if shake:
-		var order = 0.3
-		$Cam.rotation = max_roll * order * randfn(-1, 1)
-		$Cam.position = Vector2(512+randfn(-1,1.2)*max_shake*order, 384+randfn(-1,1.2)*max_shake*order)
+	if shake: shake_screen()
 	else: $Cam.position = Vector2(512,384)
-	if (!end):
-		if dragging:
-			dragging.position = get_viewport().get_mouse_position()
-		rest -= delta
-		var t = int(rest)+1
-		label.text = 'Next item in '+str(t)
+	if dragging: dragging.position = get_viewport().get_mouse_position()
+	rest -= delta
+	var t = int(rest)+1
+	label.text = 'Next item in '+str(t)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and !end:
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT :
 			if event.is_action_pressed('click'):
 				for it in items:
@@ -60,7 +54,6 @@ func _input(event: InputEvent) -> void:
 				if Coll.collisions >= 1 or !dragging.on_table:
 					dragging.position = dragging.init_pos
 					dragging.global_scale = Vector2(0.25,0.25)
-					
 				else: 
 					dragging.init_pos = dragging.position
 					if (dragging.from >= 0):
@@ -87,9 +80,4 @@ func _on_timer_timeout() -> void:
 		rest = time
 		timer.start(0)
 	else:
-		end = true
 		label.text = 'get rekt'
-
-
-func _on_button_pressed() -> void:
-	pass
