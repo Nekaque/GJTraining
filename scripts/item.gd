@@ -5,7 +5,8 @@ var movable = true
 var init_pos = null
 var on_table = false
 var from = -1
-var animations = ['steak_plate', 'empty_plate']
+var animations = ['steak', 'book', 'coffee', 'can', 'pc']
+var type = -1
 
 @onready var sprite = $Sprite
 	
@@ -35,4 +36,5 @@ func setup(i, num):
 	position = Vector2(70, i*142 + 112)
 	init_pos = position
 	from = i
+	type = num
 	

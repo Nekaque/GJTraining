@@ -52,7 +52,7 @@ offset_bottom = 33.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [node name="Button" type="Button" parent="."]
-anchors_preset = -1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 361.0

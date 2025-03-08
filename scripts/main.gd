@@ -10,6 +10,7 @@ var collided = 0
 var rest = 0
 var time = 5
 var end = false
+var max_type = 4
 @onready var timer = $Timer
 @onready var label = $Label
 
@@ -20,7 +21,7 @@ func _ready() -> void:
 	occupied = []
 	for i in range(n):
 		var temp = item.instantiate()
-		temp.setup(i,randi_range(0,1))
+		temp.setup(i,randi_range(0,max_type))
 		occupied.append(true)
 		add_child(temp)
 		items.append(temp)
@@ -42,7 +43,7 @@ func _input(event: InputEvent) -> void:
 				for it in items:
 					if it.mouse_in and it.movable:
 						dragging = it
-			else:
+			elif dragging:
 				if Coll.collisions >= 1 or !dragging.on_table:
 					dragging.position = dragging.init_pos
 				else: 
@@ -60,7 +61,7 @@ func _on_timer_timeout() -> void:
 	for i in len(occupied):
 		if !(occupied[i]):
 			var temp = item.instantiate()
-			temp.setup(i,randi_range(0,1))
+			temp.setup(i,randi_range(0,max_type))
 			occupied[i] = true
 			add_child(temp)
 			items.append(temp)

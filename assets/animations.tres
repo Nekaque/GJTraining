@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://i3q5stne2j80"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://i3q5stne2j80"]
 
 [ext_resource type="Texture2D" uid="uid://dp26t5k7f8ffo" path="res://assets/items_temp.png" id="1_m1nji"]
 
@@ -22,21 +22,17 @@ region = Rect2(200, 708, 200, 177)
 atlas = ExtResource("1_m1nji")
 region = Rect2(400, 708, 200, 177)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40p04"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw6oh"]
 atlas = ExtResource("1_m1nji")
-region = Rect2(0, 320, 213, 160)
+region = Rect2(426, 320, 213, 160)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gudva"]
 atlas = ExtResource("1_m1nji")
 region = Rect2(213, 320, 213, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tw6oh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_40p04"]
 atlas = ExtResource("1_m1nji")
-region = Rect2(426, 320, 213, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hyuu1"]
-atlas = ExtResource("1_m1nji")
-region = Rect2(0, 0, 300, 300)
+region = Rect2(0, 320, 213, 160)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkva1"]
 atlas = ExtResource("1_m1nji")
@@ -72,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uuog8")
 }],
-"loop": true,
+"loop": false,
 "name": &"book",
 "speed": 5.0
 }, {
@@ -80,13 +76,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hv1mp")
 }],
-"loop": true,
+"loop": false,
 "name": &"cactus",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"cafe zmrd",
 "speed": 5.0
 }, {
 "frames": [{
@@ -99,37 +90,29 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tbqx0")
 }],
-"loop": true,
+"loop": false,
 "name": &"can",
 "speed": 0.7
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_40p04")
+"texture": SubResource("AtlasTexture_tw6oh")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gudva")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tw6oh")
+"texture": SubResource("AtlasTexture_40p04")
 }],
-"loop": true,
+"loop": false,
 "name": &"coffee",
 "speed": 0.25
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hyuu1")
-}],
-"loop": true,
-"name": &"empty_plate",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_hkva1")
 }],
-"loop": true,
+"loop": false,
 "name": &"pc",
 "speed": 5.0
 }, {
@@ -137,7 +120,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fx456")
 }],
-"loop": true,
+"loop": false,
 "name": &"pen",
 "speed": 5.0
 }, {
@@ -145,7 +128,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_37xww")
 }],
-"loop": true,
+"loop": false,
 "name": &"pencil",
 "speed": 5.0
 }, {
@@ -153,7 +136,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0n06b")
 }],
-"loop": true,
+"loop": false,
 "name": &"plant",
 "speed": 5.0
 }, {
@@ -168,6 +151,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_q10up")
 }],
 "loop": false,
-"name": &"steak_plate",
+"name": &"steak",
 "speed": 0.5
 }]
