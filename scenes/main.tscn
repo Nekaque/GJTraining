@@ -11,6 +11,9 @@ size = Vector2(851, 649)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_sugp2")
 
+[node name="Cam" type="Camera2D" parent="."]
+position = Vector2(512, 384)
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(33.0829, 44.2947)
 
@@ -51,18 +54,4 @@ offset_right = 129.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 
-[node name="Button" type="Button" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 361.0
-offset_top = 5.0
-offset_right = 476.0
-offset_bottom = 63.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 8
-text = "Rotate"
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

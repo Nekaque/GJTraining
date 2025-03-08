@@ -8,14 +8,16 @@ var items = null
 var occupied = null
 var collided = 0
 var rest = 0
-var time = 1
+var time = 20
 var end = false
 var max_type = 4
 var random = RandomNumberGenerator.new()
-var probs = [1,2,3,4,5]
+var probs = [1, 2, 3, 4, 5]
+var shake = false
+const max_shake = 5
+const max_roll = 0.5
 @onready var timer = $Timer
 @onready var label = $Label
-
 
 func _ready() -> void:
 	var n = 5
@@ -32,9 +34,13 @@ func create_item(i):
 	add_child(temp)
 	items.append(temp)
 	occupied[i] = true
-	
 
 func _process(delta: float) -> void:
+	if shake:
+		var order = 0.3
+		$Cam.rotation = max_roll * order * randfn(-1, 1)
+		$Cam.position = Vector2(512+randfn(-1,1.2)*max_shake*order, 384+randfn(-1,1.2)*max_shake*order)
+	else: $Cam.position = Vector2(512,384)
 	if (!end):
 		if dragging:
 			dragging.position = get_viewport().get_mouse_position()
@@ -61,16 +67,22 @@ func _input(event: InputEvent) -> void:
 						occupied[dragging.from] = false
 						dragging.from = -1
 						dragging.start_animation()
-				dragging = null
+						shake = true
+						dragging = null
+						var tt = get_tree().create_timer(0.3)
+						await tt.timeout
+						shake = false
+					else: dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 
 
 func _on_timer_timeout() -> void:
 	var valid = false
 	for i in len(occupied):
-		#if !(occupied[i]):
-		create_item(i)
-			#break
+		if !(occupied[i]):
+			valid = true
+			create_item(i)
+			break
 	if valid:
 		rest = time
 		timer.start(0)

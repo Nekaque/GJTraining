@@ -55,6 +55,7 @@ position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_6muww")
 
 [node name="CoffeeCollider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-7, -7.45061e-09)
 rotation = -0.0742677
 shape = SubResource("CircleShape2D_d265e")
