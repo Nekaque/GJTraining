@@ -75,7 +75,9 @@ func _process(delta: float) -> void:
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
-		if (dragging.on_table and (Coll.collisions == 0 or dragging.type == 13)): Input.set_custom_mouse_cursor(table)
+		if (dragging.on_table and (Coll.collisions <= 0 or dragging.type == 13)):
+			if Coll.collisions <= -1: Coll.collisions = 0
+			Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
 	rest -= delta
 	var t = int(rest)+1
@@ -170,6 +172,7 @@ func clean():
 	for it in free: it.queue_free()
 	dragging = null
 	items = legit
+	Coll.collisions = 0
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
