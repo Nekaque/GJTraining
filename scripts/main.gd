@@ -10,7 +10,7 @@ var time
 var scale
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 1]
+var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 2]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -99,11 +99,12 @@ func _input(event: InputEvent) -> void:
 		elif dragging:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
-				if dragging.type == 13: clean()
+				if (dragging.type == 13 and dragging.on_table): clean()
 				else:
 					kolecka[dragging.from].play(kolecka_barvy[dragging.type])
 					dragging.position = dragging.init_pos
 					if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
+					if (dragging.type == 13): dragging.first_frame()
 					dragging = null
 			else:
 				dragging.init_pos = dragging.position
