@@ -34,13 +34,20 @@ func _on_mouse_exited() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('Items'):
-		if !(Coll.is_stackable[type] and area.is_in_group(animations[type])):
+		if (Coll.is_stackable[type] and area.is_in_group(animations[type]) and movable): print("stack")
+		#if !(Coll.is_stackable[type] and area.is_in_group(animations[type])):
+		else:
 			collided = true
 			Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group('Items'):
-		if !(Coll.is_stackable[type] and area.is_in_group(animations[type])):
+		#if !(Coll.is_stackable[type] and area.is_in_group(animations[type])):
+			#collided = false
+			#Coll.collisions -=1
+		if (Coll.is_stackable[type] and area.is_in_group(animations[type]) and movable): print("stack")
+		#if !(Coll.is_stackable[type] and area.is_in_group(animations[type])):
+		else:
 			collided = false
 			Coll.collisions -=1
 

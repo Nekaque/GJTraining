@@ -10,7 +10,7 @@ var time
 var scale
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 5, 0.5, 0.5, 0.5, 1]
+var probs = [5, 5, 5, 5, 0.2, 0.3, 1.2, 1.2, 0.7, 5, 5, 5, 5, 0]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -95,8 +95,7 @@ func _input(event: InputEvent) -> void:
 							$Music/Pick_up_item.play()
 							if dragging.type == 13: dragging.animate()
 							break
-						else:
-							shaking()
+						else: shaking()
 		elif dragging:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
@@ -192,5 +191,4 @@ func _on_cross_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
 func _on_cross_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 
 
-func _on_help_pressed() -> void:
-	tut(true)
+func _on_help_pressed() -> void: tut(true)
