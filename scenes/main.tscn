@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dcw1ii08dfkpe"]
+[gd_scene load_steps=24 format=3 uid="uid://dcw1ii08dfkpe"]
 
 [ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cgqd5jageq8fb" path="res://assets/buttons/restart2.png" id="10_3py6s"]
 [ext_resource type="Texture2D" uid="uid://28723hqxnt51" path="res://assets/buttons/mm1.png" id="11_j5d7w"]
 [ext_resource type="Texture2D" uid="uid://dthxyl3b8m4tr" path="res://assets/buttons/mm2.png" id="12_hfj15"]
+[ext_resource type="Texture2D" uid="uid://cey6uysj2hssl" path="res://assets/upgrades.png" id="16_xfp1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
@@ -120,10 +121,10 @@ theme_override_font_sizes/font_size = 54
 text = "12"
 
 [node name="help" type="TextureButton" parent="."]
-offset_left = 950.0
-offset_top = 7.0
-offset_right = 990.0
-offset_bottom = 70.0
+offset_left = 946.0
+offset_top = 14.0
+offset_right = 986.0
+offset_bottom = 77.0
 texture_normal = ExtResource("2_txiky")
 texture_hover = ExtResource("3_5hqo2")
 
@@ -206,6 +207,32 @@ animation = &"empty"
 position = Vector2(77, 687)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"empty"
+
+[node name="powerups_ukazatel" type="Node2D" parent="."]
+
+[node name="steak_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+position = Vector2(263, 45)
+texture = ExtResource("16_xfp1r")
+region_enabled = true
+region_rect = Rect2(0, 0, 62.8256, 72.3589)
+
+[node name="can_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+position = Vector2(328, 44)
+texture = ExtResource("16_xfp1r")
+region_enabled = true
+region_rect = Rect2(70.0864, -0.101433, 50.8929, 74.6561)
+
+[node name="book_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+position = Vector2(391, 46)
+texture = ExtResource("16_xfp1r")
+region_enabled = true
+region_rect = Rect2(132.092, 0.197433, 53.8816, 74.4079)
+
+[node name="coffee_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+position = Vector2(458, 46)
+texture = ExtResource("16_xfp1r")
+region_enabled = true
+region_rect = Rect2(193.916, 0.0630188, 60.2331, 76.1772)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="help" to="." method="_on_help_pressed"]
