@@ -51,7 +51,9 @@ func _on_table_colider_area_exited(area: Area2D) -> void:
 func setup(i, num):
 	_ready()
 	global_scale = Vector2(0.4,0.4)
+	if num<=8: rotate(deg_to_rad((randi()%4) * 90))
 	sprite.animation = animations[num]
+	first_frame()
 	for collider in colliders: collider.disabled = true
 	add_to_group(animations[num])
 	colliders[num].disabled = false

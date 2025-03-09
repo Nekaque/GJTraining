@@ -24,8 +24,8 @@ var kolecka_barvy = ['green', 'yellow', 'green', 'green', 'red', 'red', 'yellow'
 @onready var label = $Label
 
 func _ready() -> void:
-	generate()
 	tut(true)
+	generate()
 	
 func tut(show):
 	$Tutorial.visible = show
@@ -104,7 +104,6 @@ func _input(event: InputEvent) -> void:
 					kolecka[dragging.from].play(kolecka_barvy[dragging.type])
 					dragging.position = dragging.init_pos
 					if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
-					if (dragging.type == 13): dragging.first_frame()
 					dragging = null
 			else:
 				dragging.init_pos = dragging.position
@@ -145,6 +144,9 @@ func _on_timer_timeout() -> void:
 		timer.wait_time = time
 		timer.start(0)
 	else:
+		for i in len(powerups_icons):
+			Coll.is_stackable[i] = false
+			powerups_icons[i].visible = false
 		label.text = 'get rekt'
 		$End.visible = true
 		dragging = null
