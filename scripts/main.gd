@@ -118,7 +118,7 @@ func _input(event: InputEvent) -> void:
 				elif dragging.type >=9 and dragging.type <= 12: power_up()
 				elif (dragging.from >= 0):
 					score+=1
-					if (score%5 == 0) and time > 1.45: time -= 0.3
+					if (score%7 == 0) and time > 1.54: time -= 0.25
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
