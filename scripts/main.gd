@@ -9,7 +9,7 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1]
+var probs = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1, 100]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -82,6 +82,7 @@ func _input(event: InputEvent) -> void:
 							dragging = it
 							dragging.global_scale = scale
 							Input.set_custom_mouse_cursor(holding)
+							if dragging.type == 13: dragging.animate()
 							break
 						else: shaking()
 		elif dragging:
@@ -89,6 +90,7 @@ func _input(event: InputEvent) -> void:
 			if Coll.collisions >= 1 or !dragging.on_table:
 				dragging.position = dragging.init_pos
 				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
+				if (dragging.type == 13): dragging.first_frame()
 				dragging = null
 			else: 
 				dragging.init_pos = dragging.position
