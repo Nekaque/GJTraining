@@ -105,6 +105,8 @@ texture = ExtResource("1_o5qli")
 
 [node name="Table" type="Area2D" parent="."]
 position = Vector2(519, 400)
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
 position = Vector2(62.5, 9.5)
@@ -136,7 +138,6 @@ texture_hover = ExtResource("3_5hqo2")
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Tutorial"]
 offset_right = 40.0
@@ -144,10 +145,10 @@ offset_bottom = 40.0
 texture = ExtResource("5_tbgi4")
 
 [node name="cross" type="TextureButton" parent="Tutorial"]
-offset_left = 954.0
-offset_top = 15.0
-offset_right = 1000.0
-offset_bottom = 65.0
+offset_left = 939.0
+offset_top = 19.0
+offset_right = 985.0
+offset_bottom = 69.0
 texture_normal = ExtResource("6_tefeu")
 texture_hover = ExtResource("8_h17kw")
 

@@ -10,7 +10,7 @@ var time
 var scale
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 1]
+var probs = [5, 5, 5, 5, 0.2, 0.3, 1.2, 1.2, 0.7, 5, 5, 5, 5, 0]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -24,8 +24,8 @@ var kolecka_barvy = ['green', 'yellow', 'green', 'green', 'red', 'red', 'yellow'
 @onready var label = $Label
 
 func _ready() -> void:
-	generate()
 	tut(true)
+	generate()
 	
 func tut(show):
 	$Tutorial.visible = show
@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
-		if (dragging.on_table and Coll.collisions == 0): Input.set_custom_mouse_cursor(table)
+		if (dragging.on_table and (Coll.collisions == 0 or dragging.type == 13)): Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
 	rest -= delta
 	var t = int(rest)+1
@@ -99,7 +99,7 @@ func _input(event: InputEvent) -> void:
 		elif dragging:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
-				if dragging.type == 13: clean()
+				if (dragging.type == 13 and dragging.on_table): clean()
 				else:
 					kolecka[dragging.from].play(kolecka_barvy[dragging.type])
 					dragging.position = dragging.init_pos
@@ -145,6 +145,9 @@ func _on_timer_timeout() -> void:
 		timer.wait_time = time
 		timer.start(0)
 	else:
+		for i in len(powerups_icons):
+			Coll.is_stackable[i] = false
+			powerups_icons[i].visible = false
 		label.text = 'get rekt'
 		$End.visible = true
 		dragging = null
@@ -188,5 +191,4 @@ func _on_cross_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
 func _on_cross_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 
 
-func _on_help_pressed() -> void:
-	tut(true)
+func _on_help_pressed() -> void: tut(true)
