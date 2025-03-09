@@ -17,10 +17,12 @@ func _on_mouse_entered() -> void: mouse_in = true
 func _on_mouse_exited() -> void: mouse_in = false
 
 func _on_area_entered(area: Area2D) -> void:
-	if (area.is_in_group('Items')): Coll.collisions +=1
+	if (area.is_in_group('Items') and from == -1):
+		print(area.name)
+		Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
-	if (area.is_in_group('Items')): Coll.collisions -=1
+	if (area.is_in_group('Items') and from == -1): Coll.collisions -=1
 
 func _on_table_colider_area_entered(area: Area2D) -> void:
 	if (area.name == 'Table'): on_table = true
