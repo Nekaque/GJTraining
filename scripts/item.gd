@@ -5,8 +5,9 @@ var movable = true
 var init_pos = null
 var on_table = false
 var from = -1
-var animations = ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-@onready var colliders = [$PlateCollider, $BookCollider, $CoffeeCollider, $CanCollider, $PcCollider, $CactusCollider, $PencilCollider, $PenCollider, $PlantCollider]
+var animations = ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant', 'steak_up','book_up', 'coffee_up', 'can_up', 'cleanup']
+@onready var colliders = [$PlateCollider, $BookCollider, $CoffeeCollider, $CanCollider, $PcCollider, $CactusCollider, $PencilCollider,
+$PenCollider, $PlantCollider, $CoffeeCollider, $CoffeeCollider,$CoffeeCollider,$CoffeeCollider, $CoffeeCollider]
 @onready var sprite = $Sprite
 var type = -1
 var hover = load("res://assets/buttons/hand_hover.png")
@@ -24,9 +25,9 @@ func _on_mouse_exited() -> void:
 	Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 
 func _on_area_entered(area: Area2D) -> void:
-	print('entered: ', area.name)
-	print('collisions: ', Coll.collisions)
-	print('from: ', from)
+	#print('entered: ', area.name)
+	#print('collisions: ', Coll.collisions)
+	#print('from: ', from)
 	if area.is_in_group('Items'): Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
@@ -48,6 +49,12 @@ func setup(i, num):
 	init_pos = position
 	from = i
 	type = num
+
+func animate(): sprite.play()
+
+func first_frame():
+	sprite.play()
+	sprite.pause()
 
 func placed():
 	from = -1

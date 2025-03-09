@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcw1ii08dfkpe"]
+[gd_scene load_steps=23 format=3 uid="uid://dcw1ii08dfkpe"]
 
 [ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
-[ext_resource type="StyleBox" uid="uid://cifss01wnwc3s" path="res://assets/circle.tres" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://bdx7jikb8qqvu" path="res://assets/buttons/help1.png" id="2_txiky"]
+[ext_resource type="Texture2D" uid="uid://ddvpeq4aqjvoa" path="res://assets/buttons/help2.png" id="3_5hqo2"]
 [ext_resource type="Texture2D" uid="uid://dlmovbcnn1a7k" path="res://assets/backgrounds/table.png" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://qkipgbo7m238" path="res://assets/backgrounds/tutorial.png" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bmb0qrjhpwd5b" path="res://assets/buttons/cross.png" id="6_tefeu"]
@@ -95,19 +96,6 @@ position = Vector2(33.0829, 44.2947)
 position = Vector2(512, 384)
 texture = ExtResource("1_o5qli")
 
-[node name="B1" type="Button" parent="."]
-visible = false
-offset_left = 11.0
-offset_top = 57.0
-offset_right = 131.0
-offset_bottom = 177.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
-theme_override_styles/disabled = ExtResource("3_jyhfs")
-disabled = true
-
 [node name="Table" type="Area2D" parent="."]
 position = Vector2(519, 400)
 
@@ -130,6 +118,14 @@ theme_override_colors/font_color = Color(0.992157, 0.956863, 0.733333, 1)
 theme_override_fonts/font = ExtResource("8_3xlq0")
 theme_override_font_sizes/font_size = 54
 text = "12"
+
+[node name="help" type="TextureButton" parent="."]
+offset_left = 950.0
+offset_top = 7.0
+offset_right = 990.0
+offset_bottom = 70.0
+texture_normal = ExtResource("2_txiky")
+texture_hover = ExtResource("3_5hqo2")
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -212,6 +208,7 @@ sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"empty"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="help" to="." method="_on_help_pressed"]
 [connection signal="mouse_entered" from="Tutorial/cross" to="." method="_on_cross_mouse_entered"]
 [connection signal="mouse_exited" from="Tutorial/cross" to="." method="_on_cross_mouse_exited"]
 [connection signal="pressed" from="Tutorial/cross" to="." method="_on_texture_button_pressed"]

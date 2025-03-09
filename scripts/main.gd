@@ -9,8 +9,7 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-# 		steak book coffee can pc cactus pencil pen plant
-var probs = [1, 0.5, 4, 3, 0.2, 0.3, 2, 2, 1]
+var probs = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1, 100]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -24,8 +23,12 @@ var kolecka_barvy = ['green', 'yellow', 'green', 'green', 'red', 'red', 'yellow'
 
 func _ready() -> void:
 	generate()
-	$Tutorial.visible = Coll.tutorial
-	get_tree().paused = Coll.tutorial
+	tut(true)
+	
+func tut(show):
+	$Tutorial.visible = show
+	get_tree().paused = show
+	
 
 func generate():
 	scale = Vector2(0.8, 0.8)
@@ -84,6 +87,7 @@ func _input(event: InputEvent) -> void:
 							dragging.global_scale = scale
 							Input.set_custom_mouse_cursor(holding)
 							kolecka[dragging.from].play('empty')
+							if dragging.type == 13: dragging.animate()
 							break
 						else: shaking()
 		elif dragging:
@@ -92,6 +96,7 @@ func _input(event: InputEvent) -> void:
 				kolecka[dragging.from].play(kolecka_barvy[dragging.type])
 				dragging.position = dragging.init_pos
 				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
+				if (dragging.type == 13): dragging.first_frame()
 				dragging = null
 			else: 
 				dragging.init_pos = dragging.position
@@ -124,9 +129,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_texture_button_pressed() -> void:
-	$Tutorial.visible = false
-	Coll.tutorial = false
-	get_tree().paused = false
+	tut(false)
 
 
 func _on_button_pressed() -> void:
@@ -148,3 +151,7 @@ func _on_main_menu_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
 func _on_main_menu_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 func _on_cross_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
 func _on_cross_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
+
+
+func _on_help_pressed() -> void:
+	tut(true)
