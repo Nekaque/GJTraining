@@ -19,6 +19,7 @@ var table = load("res://assets/buttons/hand_table.png")
 var hover = load("res://assets/buttons/hand_hover.png")
 var kolecka_barvy = ['green', 'yellow', 'green', 'green', 'red', 'red', 'yellow', 'yellow', 'yellow', 'blue', 'blue', 'blue', 'blue', 'blue']
 @onready var kolecka = [$kolecka/kolecko1, $kolecka/kolecko2, $kolecka/kolecko3, $kolecka/kolecko4, $kolecka/kolecko5]
+@onready var powerups_icons = [$powerups_ukazatel/steak_rdy, $powerups_ukazatel/book_rdy, $powerups_ukazatel/coffee_rdy, $powerups_ukazatel/can_rdy]
 @onready var timer = $Timer
 @onready var label = $Label
 
@@ -107,6 +108,8 @@ func _input(event: InputEvent) -> void:
 				dragging.init_pos = dragging.position
 				if dragging.type == 13: clean()
 				elif dragging.type >=9 and dragging.type <= 12:
+					$Music/Upgrade.play()
+					powerups_icons[dragging.type-9].visible = true
 					Coll.is_stackable[dragging.type-9] = true
 					probs[dragging.type] = 0
 					occupied[dragging.from] = false
@@ -151,6 +154,7 @@ func _on_texture_button_pressed() -> void:
 
 
 func clean():
+	$Music/Broom_sweep.play()
 	occupied[dragging.from] = false
 	var legit = []
 	var free = []

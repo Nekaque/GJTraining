@@ -117,9 +117,9 @@ texture = ExtResource("4_jyhfs")
 wait_time = 5.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = 128.0
+offset_left = 150.0
 offset_top = 10.0
-offset_right = 246.0
+offset_right = 238.0
 offset_bottom = 74.0
 theme_override_colors/font_color = Color(0.992157, 0.956863, 0.733333, 1)
 theme_override_fonts/font = ExtResource("8_3xlq0")
@@ -215,27 +215,30 @@ sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"empty"
 
 [node name="powerups_ukazatel" type="Node2D" parent="."]
-visible = false
 
 [node name="steak_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+visible = false
 position = Vector2(263, 45)
 texture = ExtResource("16_xfp1r")
 region_enabled = true
 region_rect = Rect2(0, 0, 62.8256, 72.3589)
 
 [node name="can_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+visible = false
 position = Vector2(328, 44)
 texture = ExtResource("16_xfp1r")
 region_enabled = true
 region_rect = Rect2(70.0864, -0.101433, 50.8929, 74.6561)
 
 [node name="book_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+visible = false
 position = Vector2(391, 46)
 texture = ExtResource("16_xfp1r")
 region_enabled = true
 region_rect = Rect2(132.092, 0.197433, 53.8816, 74.4079)
 
 [node name="coffee_rdy" type="Sprite2D" parent="powerups_ukazatel"]
+visible = false
 position = Vector2(458, 46)
 texture = ExtResource("16_xfp1r")
 region_enabled = true
@@ -256,7 +259,7 @@ volume_db = -2.811
 
 [node name="Place_on_table" type="AudioStreamPlayer2D" parent="Music"]
 stream = ExtResource("19_oxubh")
-volume_db = 12.181
+volume_db = 3.749
 
 [node name="Pick_up_item" type="AudioStreamPlayer2D" parent="Music"]
 stream = ExtResource("20_fib4w")
