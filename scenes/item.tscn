@@ -37,6 +37,8 @@ radius = 59.0762
 radius = 162.077
 
 [node name="Item" type="Area2D" groups=["Items"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_s8enn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

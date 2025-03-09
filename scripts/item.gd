@@ -43,10 +43,20 @@ func _on_area_exited(area: Area2D) -> void:
 			Coll.collisions -=1
 
 func _on_table_colider_area_entered(area: Area2D) -> void:
-	if (area.name == 'Table'): on_table = true
+	if (area.name == 'Table'):
+		set_collision_layer_value(1, true)
+		set_collision_layer_value(2, false)
+		set_collision_mask_value(1, true)
+		set_collision_mask_value(2, false)
+		on_table = true
 
 func _on_table_colider_area_exited(area: Area2D) -> void:
-	if (area.name == 'Table'): on_table = false
+	if (area.name == 'Table'):
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(2, true)
+		set_collision_mask_value(2, true)
+		set_collision_mask_value(1, false)
+		on_table = false
 
 func setup(i, num):
 	_ready()

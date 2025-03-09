@@ -10,7 +10,7 @@ var time
 var scale
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 1]
+var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 5, 0.5, 0.5, 0.5, 1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -75,7 +75,6 @@ func _process(delta: float) -> void:
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
-		print(dragging.on_table)
 		if (dragging.on_table and (Coll.collisions == 0 or dragging.type == 13)): Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
 	rest -= delta
