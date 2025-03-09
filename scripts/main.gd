@@ -181,7 +181,8 @@ func clean():
 	dragging = null
 	items = legit
 	Coll.collisions = 0
-	for x in items: x.collided = false
+	for x in items:
+			if (x.collided): print(x.get_groups())
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
