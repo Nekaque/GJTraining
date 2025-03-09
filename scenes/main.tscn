@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcw1ii08dfkpe"]
+[gd_scene load_steps=10 format=3 uid="uid://dcw1ii08dfkpe"]
 
 [ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qkipgbo7m238" path="res://assets/backgrounds/tutorial.png" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bmb0qrjhpwd5b" path="res://assets/buttons/cross.png" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://bsl7v6g2gc1h5" path="res://assets/backgrounds/end.png" id="7_o6xl0"]
+[ext_resource type="FontFile" uid="uid://ctmyhkfdv32rt" path="res://assets/fonts/ConcertOne-Regular.ttf" id="8_3xlq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
@@ -77,7 +78,6 @@ texture_normal = ExtResource("6_tefeu")
 
 [node name="End" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="End"]
 offset_right = 1024.0
@@ -85,10 +85,13 @@ offset_bottom = 768.0
 texture = ExtResource("7_o6xl0")
 
 [node name="Score" type="Label" parent="End"]
-offset_left = 490.0
-offset_top = 512.0
-offset_right = 527.0
-offset_bottom = 535.0
+offset_left = 419.0
+offset_top = 493.0
+offset_right = 625.0
+offset_bottom = 609.0
+theme_override_colors/font_color = Color(0.992157, 0.956863, 0.733333, 1)
+theme_override_fonts/font = ExtResource("8_3xlq0")
+theme_override_font_sizes/font_size = 72
 text = "1000"
 horizontal_alignment = 1
 
@@ -109,11 +112,10 @@ offset_bottom = 597.0
 text = "RESTART"
 
 [node name="Button2" type="Button" parent="End"]
-offset_left = 131.0
-offset_top = 570.0
-offset_right = 235.0
-offset_bottom = 601.0
-text = "MAIN MENU"
+offset_left = 45.0
+offset_top = 519.0
+offset_right = 287.0
+offset_bottom = 680.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Tutorial/TextureButton" to="." method="_on_texture_button_pressed"]
