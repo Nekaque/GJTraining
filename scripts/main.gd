@@ -37,6 +37,7 @@ func generate():
 	Coll.collisions = 0
 	time = 5
 	score = 0
+	item = []
 	for i in len(occupied):
 		Coll.is_stackable[i] = false
 		create_item(i)
@@ -77,8 +78,10 @@ func _process(delta: float) -> void:
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
-		if (dragging.on_table and (Coll.collisions <= 0 or (dragging.type >=9 and dragging.type <= 13))):
-			if Coll.collisions <= -1: Coll.collisions = 0
+		if (dragging.on_table and (Coll.collisions <= 1 or (dragging.type >=9 and dragging.type <= 13))):
+			if Coll.collisions >= 0:
+				for x in items: x.collide = false	
+			elif (Coll.collisions != 0): Coll.collisions = 0
 			Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
 	rest -= delta
@@ -118,7 +121,7 @@ func _input(event: InputEvent) -> void:
 				elif dragging.type >=9 and dragging.type <= 12: power_up()
 				elif (dragging.from >= 0):
 					score+=1
-					if (score%7 == 0) and time > 1.54: time -= 0.25
+					if (score%5 == 0) and time > 1.45: time -= 0.3
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
@@ -181,8 +184,7 @@ func clean():
 	dragging = null
 	items = legit
 	Coll.collisions = 0
-	for x in items:
-			if (x.collided): print(x.get_groups())
+	for x in items: x.collide = false
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
