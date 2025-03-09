@@ -96,14 +96,28 @@ func _input(event: InputEvent) -> void:
 		elif dragging:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
-				kolecka[dragging.from].play(kolecka_barvy[dragging.type])
-				dragging.position = dragging.init_pos
-				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
-				if (dragging.type == 13): dragging.first_frame()
-				dragging = null
-			else: 
+				if dragging.type == 13: clean()
+				else:
+					kolecka[dragging.from].play(kolecka_barvy[dragging.type])
+					dragging.position = dragging.init_pos
+					if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
+					if (dragging.type == 13): dragging.first_frame()
+					dragging = null
+			else:
 				dragging.init_pos = dragging.position
-				if (dragging.from >= 0):
+				if dragging.type == 13: clean()
+				elif dragging.type >=9 and dragging.type <= 12:
+					Coll.is_stackable[dragging.type-9] = true
+					probs[dragging.type] = 0
+					occupied[dragging.from] = false
+					for i in len(items):
+						if (items[i] == dragging):
+							items.pop_at(i)
+							break
+					dragging.queue_free()
+					dragging = null
+					
+				elif (dragging.from >= 0):
 					score+=1
 					if (score%5 == 0): time -= 0.3
 					$End/Score.text = str(score)
@@ -135,6 +149,17 @@ func _on_timer_timeout() -> void:
 func _on_texture_button_pressed() -> void:
 	tut(false)
 
+
+func clean():
+	occupied[dragging.from] = false
+	var legit = []
+	var free = []
+	for it in items:
+		if (it.collided and it.cleanable) or it == dragging: free.append(it)
+		else: legit.append(it)
+	for it in free: it.queue_free()
+	dragging = null
+	items = legit
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
