@@ -9,8 +9,12 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [10, 10, 0, 0, 1, 2, 2,3 ,5]
+var probs = [1, 1, 0, 0, 1, 2, 2,3 ,1]
 var shake = false
+var holding = load("res://assets/buttons/hand_holding.png")
+var default = load("res://assets/buttons/hand_default.png")
+var no_table = load("res://assets/buttons/hand_nontable.png")
+var table = load("res://assets/buttons/hand_table.png")
 @onready var timer = $Timer
 @onready var label = $Label
 
@@ -55,7 +59,10 @@ func shaking():
 func _process(delta: float) -> void:
 	if shake: shake_screen()
 	else: $Cam.position = Vector2(512,384)
-	if dragging: dragging.position = get_viewport().get_mouse_position()
+	if dragging:
+		dragging.position = get_viewport().get_mouse_position()
+		if (dragging.on_table and Coll.collisions == 0): Input.set_custom_mouse_cursor(table)
+		else: Input.set_custom_mouse_cursor(no_table)
 	rest -= delta
 	var t = int(rest)+1
 	label.text = 'Next item in '+str(t)
@@ -69,9 +76,11 @@ func _input(event: InputEvent) -> void:
 						if it.movable:
 							dragging = it
 							dragging.global_scale = scale
+							Input.set_custom_mouse_cursor(holding)
 							break
 						else: shaking()
 		elif dragging:
+			Input.set_custom_mouse_cursor(default)
 			if Coll.collisions >= 1 or !dragging.on_table:
 				dragging.position = dragging.init_pos
 				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
