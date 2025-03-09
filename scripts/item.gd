@@ -9,7 +9,7 @@ var stackable = false
 var from = -1
 var animations = ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant', 'steak_up','book_up', 'coffee_up', 'can_up', 'cleanup']
 @onready var colliders = [$PlateCollider, $BookCollider, $CoffeeCollider, $CanCollider, $PcCollider, $CactusCollider, $PencilCollider,
-$PenCollider, $PlantCollider, $CoffeeCollider, $CoffeeCollider,$CoffeeCollider,$CoffeeCollider, $CoffeeCollider]
+$PenCollider, $PlantCollider, $CoffeeCollider, $CoffeeCollider,$CoffeeCollider,$CoffeeCollider, $CleanupCollider]
 @onready var sprite = $Sprite
 var type = -1
 var hover = load("res://assets/buttons/hand_hover.png")
