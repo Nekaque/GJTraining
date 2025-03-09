@@ -9,7 +9,8 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [0, 0, 0, 0, 100, 0, 0, 0 ,0, 1, 1, 1,1, 100]
+# ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
+var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -51,6 +52,7 @@ func create_item(i):
 	items.push_front(temp)
 	kolecka[i].play(kolecka_barvy[rnd_weighted])
 	occupied[i] = true
+	$Music/Item_arrives.play()
 
 func shake_screen():
 	var order = 0.3
@@ -87,6 +89,7 @@ func _input(event: InputEvent) -> void:
 							dragging.global_scale = scale
 							Input.set_custom_mouse_cursor(holding)
 							kolecka[dragging.from].play('empty')
+							$Music/Pick_up_item.play()
 							if dragging.type == 13: dragging.animate()
 							break
 						else: shaking()
@@ -106,6 +109,7 @@ func _input(event: InputEvent) -> void:
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
+					$Music/Place_on_table.play()
 				dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 

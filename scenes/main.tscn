@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dcw1ii08dfkpe"]
+[gd_scene load_steps=30 format=3 uid="uid://dcw1ii08dfkpe"]
 
 [ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
@@ -16,6 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://28723hqxnt51" path="res://assets/buttons/mm1.png" id="11_j5d7w"]
 [ext_resource type="Texture2D" uid="uid://dthxyl3b8m4tr" path="res://assets/buttons/mm2.png" id="12_hfj15"]
 [ext_resource type="Texture2D" uid="uid://cey6uysj2hssl" path="res://assets/upgrades.png" id="16_xfp1r"]
+[ext_resource type="AudioStream" uid="uid://bh8u4a5t2oyfb" path="res://assets/sounds/main_music.mp3" id="17_gvga5"]
+[ext_resource type="AudioStream" uid="uid://cwj4llsrevpm4" path="res://assets/sounds/item_arrives_to_list.mp3" id="18_4ppel"]
+[ext_resource type="AudioStream" uid="uid://bosul06wte2fk" path="res://assets/sounds/place_on_table.mp3" id="19_oxubh"]
+[ext_resource type="AudioStream" uid="uid://bsyb3rrmgo3m8" path="res://assets/sounds/pick_up_item.mp3" id="20_fib4w"]
+[ext_resource type="AudioStream" uid="uid://br5l0ys7g1evj" path="res://assets/sounds/broom-sweep.mp3" id="21_me7py"]
+[ext_resource type="AudioStream" uid="uid://nxaihsm30252" path="res://assets/sounds/stack_got.mp3" id="22_xjdal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
@@ -209,6 +215,7 @@ sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"empty"
 
 [node name="powerups_ukazatel" type="Node2D" parent="."]
+visible = false
 
 [node name="steak_rdy" type="Sprite2D" parent="powerups_ukazatel"]
 position = Vector2(263, 45)
@@ -233,6 +240,34 @@ position = Vector2(458, 46)
 texture = ExtResource("16_xfp1r")
 region_enabled = true
 region_rect = Rect2(193.916, 0.0630188, 60.2331, 76.1772)
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="MainMusicPlayer" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("17_gvga5")
+volume_db = 5.878
+autoplay = true
+attenuation = 2.37841
+parameters/looping = true
+
+[node name="Item_arrives" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("18_4ppel")
+volume_db = -2.811
+
+[node name="Place_on_table" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("19_oxubh")
+volume_db = 12.181
+
+[node name="Pick_up_item" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("20_fib4w")
+volume_db = 2.5
+
+[node name="Broom_sweep" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("21_me7py")
+volume_db = 10.37
+
+[node name="Upgrade" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("22_xjdal")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="help" to="." method="_on_help_pressed"]

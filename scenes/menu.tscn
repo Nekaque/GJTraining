@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpg54jnpcpset"]
+[gd_scene load_steps=6 format=3 uid="uid://cpg54jnpcpset"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_con2f"]
 [ext_resource type="Texture2D" uid="uid://drc8u8vc4opid" path="res://assets/buttons/play1.png" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://ltoun0nuxlm7" path="res://assets/buttons/play2.png" id="2_con2f"]
 [ext_resource type="Texture2D" uid="uid://dn3mop8mwwykm" path="res://assets/backgrounds/background.png" id="2_mhnvy"]
+[ext_resource type="AudioStream" uid="uid://de43fdl71al3g" path="res://assets/sounds/main_music3.mp3" id="5_5alfh"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_con2f")
@@ -20,6 +21,11 @@ offset_right = 613.0
 offset_bottom = 363.0
 texture_normal = ExtResource("1_vjb58")
 texture_hover = ExtResource("2_con2f")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_5alfh")
+autoplay = true
+parameters/looping = true
 
 [connection signal="mouse_entered" from="play" to="." method="_on_play_mouse_entered"]
 [connection signal="mouse_exited" from="play" to="." method="_on_play_mouse_exited"]
