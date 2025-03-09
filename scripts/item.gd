@@ -12,12 +12,15 @@ var type = -1
 
 func _ready() -> void: pass
 
-func _on_mouse_entered() -> void: mouse_in = true
+func _on_mouse_entered() -> void:
+	mouse_in = true
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
-func _on_mouse_exited() -> void: mouse_in = false
+func _on_mouse_exited() -> void:
+	mouse_in = false
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _on_area_entered(area: Area2D) -> void:
-	print(Coll.collisions)
 	if (area.is_in_group('Items') and from == -1): Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
@@ -31,7 +34,7 @@ func _on_table_colider_area_exited(area: Area2D) -> void:
 
 func setup(i, num):
 	_ready()
-	global_scale = Vector2(0.25,0.25)
+	global_scale = Vector2(0.33,0.33)
 	sprite.animation = animations[num]
 	for collider in colliders: collider.disabled = true
 	colliders[num].disabled = false

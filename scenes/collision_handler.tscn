@@ -4,3 +4,7 @@
 
 [node name="CollisionHandler" type="Node"]
 script = ExtResource("1_0gx8u")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
