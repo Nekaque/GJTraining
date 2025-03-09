@@ -16,7 +16,8 @@ var shake = false
 
 func _ready() -> void:
 	generate()
-	#get_tree().paused = true
+	$Tutorial.visible = Coll.tutorial
+	get_tree().paused = Coll.tutorial
 
 func generate():
 	scale = Vector2(1,1)
@@ -109,6 +110,7 @@ func _on_timer_timeout() -> void:
 
 func _on_texture_button_pressed() -> void:
 	$Tutorial.visible = false
+	Coll.tutorial = false
 	get_tree().paused = false
 
 
@@ -119,3 +121,8 @@ func _on_button_pressed() -> void:
 		it.queue_free()
 	$End.visible = false
 	generate()
+
+
+func _on_button_2_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")

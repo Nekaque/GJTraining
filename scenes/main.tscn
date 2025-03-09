@@ -102,12 +102,20 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_tefeu")
 
 [node name="Button" type="Button" parent="End"]
-offset_left = 476.0
-offset_top = 578.0
-offset_right = 551.0
-offset_bottom = 609.0
+offset_left = 829.0
+offset_top = 566.0
+offset_right = 904.0
+offset_bottom = 597.0
 text = "RESTART"
+
+[node name="Button2" type="Button" parent="End"]
+offset_left = 131.0
+offset_top = 570.0
+offset_right = 235.0
+offset_bottom = 601.0
+text = "MAIN MENU"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Tutorial/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="End/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="End/Button2" to="." method="_on_button_2_pressed"]
