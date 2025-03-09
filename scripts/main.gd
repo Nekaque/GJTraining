@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
-		if (dragging.on_table and (Coll.collisions <= 0 or dragging.type == 13)):
+		if (dragging.on_table and (Coll.collisions <= 0 or dragging.type >=9 and dragging.type <= 13)):
 			if Coll.collisions <= -1: Coll.collisions = 0
 			Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
@@ -103,6 +103,7 @@ func _input(event: InputEvent) -> void:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
 				if (dragging.type == 13 and dragging.on_table): clean()
+				elif (dragging.type >=9 and dragging.type <= 12 and dragging.on_table): power_up()
 				else:
 					kolecka[dragging.from].play(kolecka_barvy[dragging.type])
 					dragging.position = dragging.init_pos
@@ -112,19 +113,7 @@ func _input(event: InputEvent) -> void:
 			else:
 				dragging.init_pos = dragging.position
 				if dragging.type == 13: clean()
-				elif dragging.type >=9 and dragging.type <= 12:
-					$Music/Upgrade.play()
-					powerups_icons[dragging.type-9].visible = true
-					Coll.is_stackable[dragging.type-9] = true
-					probs[dragging.type] = 0
-					occupied[dragging.from] = false
-					for i in len(items):
-						if (items[i] == dragging):
-							items.pop_at(i)
-							break
-					dragging.queue_free()
-					dragging = null
-					
+				elif dragging.type >=9 and dragging.type <= 12: power_up()
 				elif (dragging.from >= 0):
 					score+=1
 					if (score%5 == 0) and time > 0.7: time -= 0.3
@@ -135,6 +124,18 @@ func _input(event: InputEvent) -> void:
 				dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 
+func power_up():
+	$Music/Upgrade.play()
+	powerups_icons[dragging.type-9].visible = true
+	Coll.is_stackable[dragging.type-9] = true
+	probs[dragging.type] = 0
+	occupied[dragging.from] = false
+	for i in len(items):
+		if (items[i] == dragging):
+			items.pop_at(i)
+			break
+	dragging.queue_free()
+	dragging = null
 
 func _on_timer_timeout() -> void:
 	var valid = false
