@@ -4,11 +4,12 @@ var item = preload("res://scenes/item.tscn")
 var dragging = null
 var items = []
 var occupied  = [true, true, true, true, true]
-var rest = 0
-var score = 0
-var time = 50
+var rest
+var score
+var time
+var scale
 var random = RandomNumberGenerator.new()
-var probs = [4, 5, 0, 0, 10, 4, 4,4 ,4]
+var probs = [10, 10, 0, 0, 1, 2, 2,3 ,5]
 var shake = false
 @onready var timer = $Timer
 @onready var label = $Label
@@ -18,6 +19,9 @@ func _ready() -> void:
 	#get_tree().paused = true
 
 func generate():
+	scale = Vector2(1,1)
+	time = 5
+	score = 0
 	for i in len(occupied): create_item(i)
 	timer.wait_time = time
 	timer.start(0)
@@ -31,7 +35,7 @@ func create_item(i):
 	var temp = item.instantiate()
 	temp.setup(i, random.rand_weighted(probs))
 	add_child(temp)
-	items.append(temp)
+	items.push_front(temp)
 	occupied[i] = true
 
 func shake_screen():
@@ -63,7 +67,7 @@ func _input(event: InputEvent) -> void:
 					if it.mouse_in:
 						if it.movable:
 							dragging = it
-							dragging.global_scale = Vector2(1,1)
+							dragging.global_scale = scale
 							break
 						else: shaking()
 		elif dragging:
@@ -75,6 +79,9 @@ func _input(event: InputEvent) -> void:
 				dragging.init_pos = dragging.position
 				if (dragging.from >= 0):
 					score+=1
+					if (score%5 == 0):
+						scale*=1.1
+						time -= 1
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
@@ -91,10 +98,12 @@ func _on_timer_timeout() -> void:
 			break
 	if valid:
 		rest = time
+		timer.wait_time = time
 		timer.start(0)
 	else:
 		label.text = 'get rekt'
 		$End.visible = true
+		dragging = null
 		get_tree().paused = true
 
 
