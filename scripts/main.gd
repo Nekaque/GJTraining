@@ -205,3 +205,7 @@ func _on_cross_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0,
 
 
 func _on_help_pressed() -> void: tut(true)
+
+
+func _on_help_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
+func _on_help_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
