@@ -36,7 +36,9 @@ func generate():
 	scale = Vector2(0.8, 0.8)
 	time = 5
 	score = 0
-	for i in len(occupied): create_item(i)
+	for i in len(occupied):
+		Coll.is_stackable[i] = false
+		create_item(i)
 	timer.wait_time = time
 	timer.start(0)
 	rest = time

@@ -25,7 +25,6 @@ texture_hover = ExtResource("2_con2f")
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_5alfh")
 autoplay = true
-stream_paused = true
 parameters/looping = true
 
 [connection signal="mouse_entered" from="play" to="." method="_on_play_mouse_entered"]

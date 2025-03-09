@@ -4,7 +4,7 @@ var mouse_in = false
 var init_pos = null
 var on_table = false
 var movable = true
-var cleanable = true
+var cleanable = false
 var stackable = false
 var from = -1
 var animations = ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant', 'steak_up','book_up', 'coffee_up', 'can_up', 'cleanup']
@@ -32,13 +32,13 @@ func _on_mouse_exited() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('Items'):
-		if !(Coll.is_stackable and area.is_in_group(animations[type])):
+		if !(Coll.is_stackable[type] and area.is_in_group(animations[type])):
 			collided = true
 			Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group('Items'):
-		if !(Coll.is_stackable and area.is_in_group(animations[type])):
+		if !(Coll.is_stackable[type] and area.is_in_group(animations[type])):
 			collided = false
 			Coll.collisions -=1
 
@@ -55,7 +55,6 @@ func setup(i, num):
 	for collider in colliders: collider.disabled = true
 	add_to_group(animations[num])
 	colliders[num].disabled = false
-	cleanable = is_cleanable[num]
 	stackable = Coll.is_stackable[num]
 	position = Vector2(70, i*142 + 112)
 	init_pos = position
@@ -77,3 +76,4 @@ func placed():
 
 func _on_sprite_animation_finished() -> void:
 	movable = is_movable[type]
+	cleanable = is_cleanable[type]
