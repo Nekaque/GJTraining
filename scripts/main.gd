@@ -9,7 +9,7 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1, 100]
+var probs = [0, 0, 0, 0, 100, 0, 0, 0 ,0, 1, 1, 1,1, 100]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
