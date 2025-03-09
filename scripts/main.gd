@@ -82,6 +82,7 @@ func _process(delta: float) -> void:
 	label.text = str(t)
 
 func _input(event: InputEvent) -> void:
+	print(Coll.collisions)
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_action_pressed('click'):
 			if (!dragging):
