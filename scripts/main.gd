@@ -10,7 +10,7 @@ var time
 var scale
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-var probs = [5, 5, 5, 5, 0.2, 0.3, 1.2, 1.2, 0.7, 5, 5, 5, 5, 0]
+var probs =  [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -124,7 +124,7 @@ func _input(event: InputEvent) -> void:
 					
 				elif (dragging.from >= 0):
 					score+=1
-					if (score%5 == 0): time -= 0.3
+					if (score%5 == 0) and time > 0.7: time -= 0.3
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()

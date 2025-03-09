@@ -129,10 +129,10 @@ theme_override_font_sizes/font_size = 54
 text = "12"
 
 [node name="help" type="TextureButton" parent="."]
-offset_left = 946.0
-offset_top = 14.0
-offset_right = 986.0
-offset_bottom = 77.0
+offset_left = 905.0
+offset_top = 11.0
+offset_right = 945.0
+offset_bottom = 74.0
 texture_normal = ExtResource("2_txiky")
 texture_hover = ExtResource("3_5hqo2")
 
@@ -145,9 +145,9 @@ offset_bottom = 40.0
 texture = ExtResource("5_tbgi4")
 
 [node name="cross" type="TextureButton" parent="Tutorial"]
-offset_left = 939.0
+offset_left = 898.0
 offset_top = 19.0
-offset_right = 985.0
+offset_right = 944.0
 offset_bottom = 69.0
 texture_normal = ExtResource("6_tefeu")
 texture_hover = ExtResource("8_h17kw")

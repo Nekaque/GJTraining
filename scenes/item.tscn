@@ -47,6 +47,7 @@ script = ExtResource("1_s8enn")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_4gq7n")
 animation = &"coffee"
+frame_progress = 0.489775
 
 [node name="TableColider" type="Area2D" parent="."]
 collision_layer = 4
@@ -68,8 +69,7 @@ position = Vector2(1.5, 6)
 shape = SubResource("RectangleShape2D_6muww")
 
 [node name="CoffeeCollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-28, 1)
+position = Vector2(-6, -1)
 rotation = -0.0742677
 shape = SubResource("CircleShape2D_d265e")
 
