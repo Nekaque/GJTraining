@@ -27,8 +27,6 @@ func _on_table_colider_area_entered(area: Area2D) -> void:
 
 func _on_table_colider_area_exited(area: Area2D) -> void:
 	if (area.name == 'Table'): on_table = false
-	
-func start_animation(): sprite.play()
 
 func setup(i, num):
 	_ready()
@@ -43,5 +41,10 @@ func setup(i, num):
 
 func placed():
 	from = -1
-	if type == 4: movable = false
+	movable = false
+	sprite.play()
 	
+
+
+func _on_sprite_animation_finished() -> void:
+	if type!= 4: movable = true

@@ -78,7 +78,6 @@ func _input(event: InputEvent) -> void:
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
-					dragging.start_animation()
 				dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 
