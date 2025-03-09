@@ -154,6 +154,7 @@ func _on_timer_timeout() -> void:
 		label.text = 'get rekt'
 		$End.visible = true
 		dragging = null
+		$Music/GameOver.play()
 		get_tree().paused = true
 
 

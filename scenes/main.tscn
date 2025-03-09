@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dcw1ii08dfkpe"]
+[gd_scene load_steps=31 format=3 uid="uid://dcw1ii08dfkpe"]
 
 [ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://bsyb3rrmgo3m8" path="res://assets/sounds/pick_up_item.mp3" id="20_fib4w"]
 [ext_resource type="AudioStream" uid="uid://br5l0ys7g1evj" path="res://assets/sounds/broom-sweep.mp3" id="21_me7py"]
 [ext_resource type="AudioStream" uid="uid://nxaihsm30252" path="res://assets/sounds/stack_got.mp3" id="22_xjdal"]
+[ext_resource type="AudioStream" uid="uid://c6bhruaan3gos" path="res://assets/sounds/game_over.mp3" id="23_2tto6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
@@ -272,6 +273,10 @@ volume_db = 10.37
 
 [node name="Upgrade" type="AudioStreamPlayer2D" parent="Music"]
 stream = ExtResource("22_xjdal")
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="Music"]
+process_mode = 3
+stream = ExtResource("23_2tto6")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="help" to="." method="_on_help_pressed"]
