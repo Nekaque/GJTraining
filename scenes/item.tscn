@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://v837py5854ak"]
+[gd_scene load_steps=14 format=3 uid="uid://v837py5854ak"]
 
 [ext_resource type="SpriteFrames" uid="uid://i3q5stne2j80" path="res://assets/animations.tres" id="1_4gq7n"]
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_s8enn"]
@@ -33,12 +33,17 @@ size = Vector2(32, 183.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xr48l"]
 radius = 59.0762
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqv7c"]
+radius = 162.077
+
 [node name="Item" type="Area2D" groups=["Items"]]
 script = ExtResource("1_s8enn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_4gq7n")
 animation = &"cleanup"
+frame = 1
+frame_progress = 1.0
 
 [node name="TableColider" type="Area2D" parent="."]
 
@@ -90,6 +95,11 @@ shape = SubResource("RectangleShape2D_c4387")
 [node name="PlantCollider" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_xr48l")
+
+[node name="CleanupCollider" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-33, -30)
+shape = SubResource("CircleShape2D_pqv7c")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
