@@ -8,7 +8,7 @@ var rest = 0
 var score = 0
 var time = 50
 var random = RandomNumberGenerator.new()
-var probs = [4, 5, 0, 0, 0, 4, 4,4 ,4]
+var probs = [4, 5, 0, 0, 10, 4, 4,4 ,4]
 var shake = false
 @onready var timer = $Timer
 @onready var label = $Label
@@ -60,14 +60,16 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed('click'):
 			if (!dragging):
 				for it in items:
-					if it.mouse_in and it.movable:
-						dragging = it
-						dragging.global_scale = Vector2(1,1)
-						break
+					if it.mouse_in:
+						if it.movable:
+							dragging = it
+							dragging.global_scale = Vector2(1,1)
+							break
+						else: shaking()
 		elif dragging:
 			if Coll.collisions >= 1 or !dragging.on_table:
 				dragging.position = dragging.init_pos
-				if (dragging.from >= 1): dragging.global_scale = Vector2(0.25,0.25)
+				if (dragging.from >= 0): dragging.global_scale = Vector2(0.25,0.25)
 				dragging = null
 			else: 
 				dragging.init_pos = dragging.position
@@ -75,9 +77,8 @@ func _input(event: InputEvent) -> void:
 					score+=1
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
-					dragging.from = -1
+					dragging.placed()
 					dragging.start_animation()
-					shaking()
 				dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 

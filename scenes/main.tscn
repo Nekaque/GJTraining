@@ -77,6 +77,7 @@ texture_normal = ExtResource("6_tefeu")
 
 [node name="End" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="End"]
 offset_right = 1024.0

@@ -40,4 +40,8 @@ func setup(i, num):
 	init_pos = position
 	from = i
 	type = num
+
+func placed():
+	from = -1
+	if type == 4: movable = false
 	
