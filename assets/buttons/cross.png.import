@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qkipgbo7m238"
-path="res://.godot/imported/tutorial.png-e035c6ac9312f35c2cd00cdf4bcfb1d8.ctex"
+uid="uid://bmb0qrjhpwd5b"
+path="res://.godot/imported/cross.png-2f7b36d1716d4ad7acc8ec68e6a0f955.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tutorial.png"
-dest_files=["res://.godot/imported/tutorial.png-e035c6ac9312f35c2cd00cdf4bcfb1d8.ctex"]
+source_file="res://assets/buttons/cross.png"
+dest_files=["res://.godot/imported/cross.png-2f7b36d1716d4ad7acc8ec68e6a0f955.ctex"]
 
 [params]
 

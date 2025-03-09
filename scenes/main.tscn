@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://dcw1ii08dfkpe"]
 
-[ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/layout_temp.png" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="StyleBox" uid="uid://cifss01wnwc3s" path="res://assets/circle.tres" id="3_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://dlmovbcnn1a7k" path="res://assets/table.png" id="4_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://qkipgbo7m238" path="res://assets/tutorial.png" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://bmb0qrjhpwd5b" path="res://assets/cross.png" id="6_tefeu"]
-[ext_resource type="Texture2D" uid="uid://bsl7v6g2gc1h5" path="res://assets/end.png" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dlmovbcnn1a7k" path="res://assets/backgrounds/table.png" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://qkipgbo7m238" path="res://assets/backgrounds/tutorial.png" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bmb0qrjhpwd5b" path="res://assets/buttons/cross.png" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://bsl7v6g2gc1h5" path="res://assets/backgrounds/end.png" id="7_o6xl0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
