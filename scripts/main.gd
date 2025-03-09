@@ -34,6 +34,7 @@ func tut(show):
 
 func generate():
 	scale = Vector2(0.8, 0.8)
+	Coll.collisions = 0
 	time = 5
 	score = 0
 	for i in len(occupied):
@@ -180,6 +181,7 @@ func clean():
 	dragging = null
 	items = legit
 	Coll.collisions = 0
+	for x in items: x.collided = false
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
