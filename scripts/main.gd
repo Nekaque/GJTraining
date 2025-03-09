@@ -10,7 +10,7 @@ var time
 var scale
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-var probs =  [1, 0.6, 2.6, 2.5, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 1.2]
+var probs =  [1, 0.6, 2.6, 2.5, 0.2, 0.3, 1.2, 1.2, 0.7, 0.65, 0.75, 0.75, 0.75, 1.2]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
