@@ -33,11 +33,11 @@ func tut(show):
 	
 
 func generate():
+	print(items)
 	scale = Vector2(0.8, 0.8)
 	Coll.collisions = 0
 	time = 5
 	score = 0
-	item = []
 	for i in len(occupied):
 		Coll.is_stackable[i] = false
 		create_item(i)
