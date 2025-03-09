@@ -3,9 +3,6 @@
 [ext_resource type="SpriteFrames" uid="uid://i3q5stne2j80" path="res://assets/animations.tres" id="1_4gq7n"]
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_s8enn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rdvnh"]
-radius = 94.4299
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8enn"]
 size = Vector2(5, 3.5)
 
@@ -39,9 +36,12 @@ radius = 59.0762
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqv7c"]
 radius = 162.077
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rdvnh"]
+radius = 94.4299
+
 [node name="Item" type="Area2D" groups=["Items"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_s8enn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -51,9 +51,6 @@ animation = &"coffee"
 [node name="TableColider" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
-
-[node name="MouseCollision" type="CollisionShape2D" parent="TableColider"]
-shape = SubResource("CircleShape2D_rdvnh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TableColider"]
 visible = false
@@ -110,6 +107,13 @@ visible = false
 position = Vector2(-33, -30)
 shape = SubResource("CircleShape2D_pqv7c")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="MouseCollision" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rdvnh")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
@@ -117,5 +121,5 @@ shape = SubResource("CircleShape2D_pqv7c")
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="area_entered" from="TableColider" to="." method="_on_table_colider_area_entered"]
 [connection signal="area_exited" from="TableColider" to="." method="_on_table_colider_area_exited"]
-[connection signal="mouse_entered" from="TableColider" to="." method="_on_table_colider_mouse_entered"]
-[connection signal="mouse_exited" from="TableColider" to="." method="_on_table_colider_mouse_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

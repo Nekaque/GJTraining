@@ -85,6 +85,7 @@ func placed():
 	from = -1
 	movable = false
 	sprite.play()
+	$Area2D/MouseCollision.disabled = true
 	
 
 
@@ -92,16 +93,11 @@ func _on_sprite_animation_finished() -> void:
 	movable = is_movable[type]
 	cleanable = is_cleanable[type]
 
-
-func _on_table_colider_mouse_entered() -> void:
-	if !on_table:
-		mouse_in = true
-		Input.set_custom_mouse_cursor(hover)
-		
-	
+func _on_area_2d_mouse_entered() -> void:
+	mouse_in = true
+	Input.set_custom_mouse_cursor(hover)
 
 
-func _on_table_colider_mouse_exited() -> void:
-	if !on_table:
-		mouse_in = false
-		Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
+func _on_area_2d_mouse_exited() -> void:
+	mouse_in = false
+	Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
