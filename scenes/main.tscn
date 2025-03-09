@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcw1ii08dfkpe"]
+[gd_scene load_steps=17 format=3 uid="uid://dcw1ii08dfkpe"]
 
 [ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
@@ -8,9 +8,53 @@
 [ext_resource type="Texture2D" uid="uid://bmb0qrjhpwd5b" path="res://assets/buttons/cross.png" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://bsl7v6g2gc1h5" path="res://assets/backgrounds/end.png" id="7_o6xl0"]
 [ext_resource type="FontFile" uid="uid://ctmyhkfdv32rt" path="res://assets/fonts/ConcertOne-Regular.ttf" id="8_3xlq0"]
+[ext_resource type="Texture2D" uid="uid://crw3sy06516dt" path="res://assets/buttons/kolecka.png" id="9_5pd4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcgky"]
+atlas = ExtResource("9_5pd4y")
+region = Rect2(0, 0, 131, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wor4"]
+atlas = ExtResource("9_5pd4y")
+region = Rect2(0, 139, 131, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulkvn"]
+atlas = ExtResource("9_5pd4y")
+region = Rect2(0, 278, 131, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67lr1"]
+atlas = ExtResource("9_5pd4y")
+region = Rect2(0, 417, 131, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6plaw"]
+atlas = ExtResource("9_5pd4y")
+region = Rect2(0, 556, 131, 139)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qdrhg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcgky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wor4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulkvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67lr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6plaw")
+}],
+"loop": true,
+"name": &"koleckos",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_sugp2")
@@ -120,6 +164,38 @@ offset_left = 45.0
 offset_top = 519.0
 offset_right = 287.0
 offset_bottom = 680.0
+
+[node name="kolecka" type="Node2D" parent="."]
+
+[node name="kolecko1" type="AnimatedSprite2D" parent="kolecka"]
+position = Vector2(78, 121)
+sprite_frames = SubResource("SpriteFrames_qdrhg")
+animation = &"koleckos"
+frame_progress = 0.802991
+
+[node name="kolecko2" type="AnimatedSprite2D" parent="kolecka"]
+position = Vector2(78, 263)
+sprite_frames = SubResource("SpriteFrames_qdrhg")
+animation = &"koleckos"
+frame_progress = 0.105747
+
+[node name="kolecko3" type="AnimatedSprite2D" parent="kolecka"]
+position = Vector2(79, 404)
+sprite_frames = SubResource("SpriteFrames_qdrhg")
+animation = &"koleckos"
+frame_progress = 0.610203
+
+[node name="kolecko4" type="AnimatedSprite2D" parent="kolecka"]
+position = Vector2(77, 546)
+sprite_frames = SubResource("SpriteFrames_qdrhg")
+animation = &"koleckos"
+frame_progress = 0.733293
+
+[node name="kolecko5" type="AnimatedSprite2D" parent="kolecka"]
+position = Vector2(77, 687)
+sprite_frames = SubResource("SpriteFrames_qdrhg")
+animation = &"koleckos"
+frame_progress = 0.104693
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Tutorial/TextureButton" to="." method="_on_texture_button_pressed"]
