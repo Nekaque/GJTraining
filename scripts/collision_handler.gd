@@ -5,6 +5,8 @@ var tutorial = true
 var music
 var sfx
 
+var collided = []
+
 func _on_music_ready() -> void:
 	$Music.volume_db = 0
 	music = $Music

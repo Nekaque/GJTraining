@@ -1,9 +1,11 @@
 extends Area2D
 
 var mouse_in = false
-var movable = true
 var init_pos = null
 var on_table = false
+var movable = true
+var cleanable = true
+var stackable = false
 var from = -1
 var animations = ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant', 'steak_up','book_up', 'coffee_up', 'can_up', 'cleanup']
 @onready var colliders = [$PlateCollider, $BookCollider, $CoffeeCollider, $CanCollider, $PcCollider, $CactusCollider, $PencilCollider,
@@ -12,6 +14,11 @@ $PenCollider, $PlantCollider, $CoffeeCollider, $CoffeeCollider,$CoffeeCollider,$
 var type = -1
 var hover = load("res://assets/buttons/hand_hover.png")
 var default = load("res://assets/buttons/hand_default.png")
+var collided = false
+var is_cleanable = [true, false, true, true, false, false, false, false, false, false, false, false, false, false]
+var is_movable = [true, true, true, true, false, false, true, true, true, false, false, false, false, false]
+var is_stackable = [true, true, true, true, false, false, false, false, false, false, false, false, false, false]
+
 
 
 func _ready() -> void: pass
@@ -28,10 +35,14 @@ func _on_area_entered(area: Area2D) -> void:
 	#print('entered: ', area.name)
 	#print('collisions: ', Coll.collisions)
 	#print('from: ', from)
-	if area.is_in_group('Items'): Coll.collisions +=1
+	if area.is_in_group('Items'):
+		collided  = true
+		Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
-	if area.is_in_group('Items'): Coll.collisions -=1
+	if area.is_in_group('Items'):
+		collided = false
+		Coll.collisions -=1
 
 func _on_table_colider_area_entered(area: Area2D) -> void:
 	if (area.name == 'Table'): on_table = true
@@ -45,6 +56,8 @@ func setup(i, num):
 	sprite.animation = animations[num]
 	for collider in colliders: collider.disabled = true
 	colliders[num].disabled = false
+	cleanable = is_cleanable[num]
+	stackable = is_stackable[num]
 	position = Vector2(70, i*142 + 112)
 	init_pos = position
 	from = i
@@ -64,4 +77,4 @@ func placed():
 
 
 func _on_sprite_animation_finished() -> void:
-	if type!= 4: movable = true
+	movable = is_movable[type]

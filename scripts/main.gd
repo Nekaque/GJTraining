@@ -9,7 +9,7 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1, 100]
+var probs = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1, 1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -75,6 +75,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_action_pressed('click'):
+			#print(items)
 			if (!dragging):
 				for it in items:
 					if it.mouse_in:
@@ -88,19 +89,22 @@ func _input(event: InputEvent) -> void:
 		elif dragging:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
-				dragging.position = dragging.init_pos
-				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
-				if (dragging.type == 13): dragging.first_frame()
-				dragging = null
-			else: 
+				if dragging.type == 13: clean()
+				else:
+					dragging.position = dragging.init_pos
+					if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
+					if (dragging.type == 13): dragging.first_frame()
+					dragging = null
+			else:
 				dragging.init_pos = dragging.position
-				if (dragging.from >= 0):
+				if dragging.type == 13: clean()
+				elif (dragging.from >= 0):
 					score+=1
 					if (score%5 == 0): time -= 1
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
-				dragging = null
+					dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 
 
@@ -125,6 +129,18 @@ func _on_timer_timeout() -> void:
 func _on_texture_button_pressed() -> void:
 	tut(false)
 
+
+func clean():
+	occupied[dragging.from] = false
+	var legit = []
+	var free = []
+	for it in items:
+		if (it.collided and it.cleanable) or it == dragging: free.append(it)
+		else: legit.append(it)
+	for it in free: it.queue_free()
+	dragging = null
+	items = legit
+	Coll.collisions = 0
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
