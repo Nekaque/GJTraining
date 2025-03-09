@@ -28,7 +28,7 @@ func generate():
 	timer.start(0)
 	rest = time
 	var t = int(rest)
-	label.text = 'Next item in '+str(t)
+	label.text = str(t)
 	$End/Score.text = str(score)
 	
 

@@ -53,11 +53,14 @@ texture = ExtResource("4_jyhfs")
 wait_time = 5.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = 13.0
+offset_left = 128.0
 offset_top = 10.0
-offset_right = 129.0
-offset_bottom = 33.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_right = 246.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.992157, 0.956863, 0.733333, 1)
+theme_override_fonts/font = ExtResource("8_3xlq0")
+theme_override_font_sizes/font_size = 54
+text = "12"
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -78,6 +81,7 @@ texture_normal = ExtResource("6_tefeu")
 
 [node name="End" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="End"]
 offset_right = 1024.0
