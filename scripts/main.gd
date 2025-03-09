@@ -78,8 +78,6 @@ func _process(delta: float) -> void:
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
 		if (dragging.on_table and (Coll.collisions <= 1 or (dragging.type >=9 and dragging.type <= 13))):
-			if Coll.collisions >= 0:
-				for x in items: x.collided = false	
 			if (Coll.collisions != 0): Coll.collisions = 0
 			Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
