@@ -53,12 +53,8 @@ shape = SubResource("CircleShape2D_s8enn")
 
 [node name="BookCollider" type="CollisionShape2D" parent="."]
 visible = false
-<<<<<<< HEAD
 position = Vector2(1.1944, 7.15227)
 rotation = -0.0136034
-=======
-position = Vector2(1.5, 6)
->>>>>>> backend
 shape = SubResource("RectangleShape2D_6muww")
 
 [node name="CoffeeCollider" type="CollisionShape2D" parent="."]
@@ -93,11 +89,7 @@ position = Vector2(1, 2.25)
 shape = SubResource("RectangleShape2D_c4387")
 
 [node name="PlantCollider" type="CollisionShape2D" parent="."]
-<<<<<<< HEAD
 position = Vector2(0, 3)
-=======
-visible = false
->>>>>>> backend
 shape = SubResource("CircleShape2D_xr48l")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
