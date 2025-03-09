@@ -15,6 +15,7 @@ var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
 var no_table = load("res://assets/buttons/hand_nontable.png")
 var table = load("res://assets/buttons/hand_table.png")
+var hover = load("res://assets/buttons/hand_hover.png")
 @onready var timer = $Timer
 @onready var label = $Label
 
@@ -65,7 +66,7 @@ func _process(delta: float) -> void:
 		else: Input.set_custom_mouse_cursor(no_table)
 	rest -= delta
 	var t = int(rest)+1
-	label.text = 'Next item in '+str(t)
+	label.text = str(t)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -80,7 +81,7 @@ func _input(event: InputEvent) -> void:
 							break
 						else: shaking()
 		elif dragging:
-			Input.set_custom_mouse_cursor(default)
+			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
 				dragging.position = dragging.init_pos
 				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
@@ -135,3 +136,10 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func _on_restart_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
+func _on_restart_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
+func _on_main_menu_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
+func _on_main_menu_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
+func _on_cross_mouse_entered() -> void: Input.set_custom_mouse_cursor(hover)
+func _on_cross_mouse_exited() -> void: Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))

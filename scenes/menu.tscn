@@ -13,7 +13,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_mhnvy")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="play" type="TextureButton" parent="."]
 offset_left = 421.0
 offset_top = 273.0
 offset_right = 613.0
@@ -21,4 +21,6 @@ offset_bottom = 363.0
 texture_normal = ExtResource("1_vjb58")
 texture_hover = ExtResource("2_con2f")
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="play" to="." method="_on_play_mouse_exited"]
+[connection signal="pressed" from="play" to="." method="_on_texture_button_pressed"]

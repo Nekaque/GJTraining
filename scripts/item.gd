@@ -9,16 +9,19 @@ var animations = ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'p
 @onready var colliders = [$PlateCollider, $BookCollider, $CoffeeCollider, $CanCollider, $PcCollider, $CactusCollider, $PencilCollider, $PenCollider, $PlantCollider]
 @onready var sprite = $Sprite
 var type = -1
+var hover = load("res://assets/buttons/hand_hover.png")
+var default = load("res://assets/buttons/hand_default.png")
+
 
 func _ready() -> void: pass
 
 func _on_mouse_entered() -> void:
 	mouse_in = true
-	Input.set_custom_mouse_cursor(load("res://assets/buttons/hand_hover.png"))
+	Input.set_custom_mouse_cursor(hover)
 
 func _on_mouse_exited() -> void:
 	mouse_in = false
-	Input.set_custom_mouse_cursor(load("res://assets/buttons/hand_default.png"))
+	Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 
 func _on_area_entered(area: Area2D) -> void:
 	if (area.is_in_group('Items') and from == -1): Coll.collisions +=1
