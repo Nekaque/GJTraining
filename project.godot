@@ -13,7 +13,7 @@ config_version=5
 config/name="Cluttered"
 run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="uid://2b4xffnbhdu1"
+config/icon="res://assets/icon.png"
 config/windows_native_icon="res://assets/icon.ico"
 
 [autoload]
