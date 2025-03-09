@@ -18,46 +18,66 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wcgky"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p55e"]
 atlas = ExtResource("9_5pd4y")
-region = Rect2(0, 0, 131, 139)
+region = Rect2(0, 560, 131, 140)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7wor4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_84bak"]
 atlas = ExtResource("9_5pd4y")
-region = Rect2(0, 139, 131, 139)
+region = Rect2(0, 0, 131, 140)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ulkvn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oti5j"]
 atlas = ExtResource("9_5pd4y")
-region = Rect2(0, 278, 131, 139)
+region = Rect2(0, 280, 131, 140)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_67lr1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3frp"]
 atlas = ExtResource("9_5pd4y")
-region = Rect2(0, 417, 131, 139)
+region = Rect2(0, 420, 131, 140)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6plaw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx8sc"]
 atlas = ExtResource("9_5pd4y")
-region = Rect2(0, 556, 131, 139)
+region = Rect2(0, 140, 131, 140)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qdrhg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wcgky")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7wor4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ulkvn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_67lr1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6plaw")
+"texture": SubResource("AtlasTexture_3p55e")
 }],
 "loop": true,
-"name": &"koleckos",
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84bak")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oti5j")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3frp")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx8sc")
+}],
+"loop": true,
+"name": &"yellow",
 "speed": 5.0
 }]
 
@@ -169,32 +189,27 @@ texture_hover = ExtResource("12_hfj15")
 [node name="kolecko1" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(78, 121)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
-animation = &"koleckos"
-frame_progress = 0.802991
+animation = &"empty"
 
 [node name="kolecko2" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(78, 263)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
-animation = &"koleckos"
-frame_progress = 0.105747
+animation = &"empty"
 
 [node name="kolecko3" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(79, 404)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
-animation = &"koleckos"
-frame_progress = 0.610203
+animation = &"empty"
 
 [node name="kolecko4" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(77, 546)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
-animation = &"koleckos"
-frame_progress = 0.733293
+animation = &"empty"
 
 [node name="kolecko5" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(77, 687)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
-animation = &"koleckos"
-frame_progress = 0.104693
+animation = &"empty"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="Tutorial/cross" to="." method="_on_cross_mouse_entered"]

@@ -9,13 +9,16 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [1, 1, 4, 1, 1, 2, 2,3 ,1]
+# 		steak book coffee can pc cactus pencil pen plant
+var probs = [1, 0.5, 4, 3, 0.2, 0.3, 2, 2, 1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
 var no_table = load("res://assets/buttons/hand_nontable.png")
 var table = load("res://assets/buttons/hand_table.png")
 var hover = load("res://assets/buttons/hand_hover.png")
+var kolecka_barvy = ['green', 'yellow', 'green', 'green', 'red', 'red', 'yellow', 'yellow', 'yellow']
+@onready var kolecka = [$kolecka/kolecko1, $kolecka/kolecko2, $kolecka/kolecko3, $kolecka/kolecko4, $kolecka/kolecko5]
 @onready var timer = $Timer
 @onready var label = $Label
 
@@ -39,9 +42,11 @@ func generate():
 
 func create_item(i):
 	var temp = item.instantiate()
-	temp.setup(i, random.rand_weighted(probs))
+	var rnd_weighted = random.rand_weighted(probs)
+	temp.setup(i, rnd_weighted)
 	add_child(temp)
 	items.push_front(temp)
+	kolecka[i].play(kolecka_barvy[rnd_weighted])
 	occupied[i] = true
 
 func shake_screen():
@@ -78,11 +83,13 @@ func _input(event: InputEvent) -> void:
 							dragging = it
 							dragging.global_scale = scale
 							Input.set_custom_mouse_cursor(holding)
+							kolecka[dragging.from].play('empty')
 							break
 						else: shaking()
 		elif dragging:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
+				kolecka[dragging.from].play(kolecka_barvy[dragging.type])
 				dragging.position = dragging.init_pos
 				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
 				dragging = null
@@ -90,7 +97,7 @@ func _input(event: InputEvent) -> void:
 				dragging.init_pos = dragging.position
 				if (dragging.from >= 0):
 					score+=1
-					if (score%5 == 0): time -= 1
+					if (score%5 == 0): time -= 0.3
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
