@@ -8,6 +8,7 @@ var rest
 var score
 var time
 var scale
+var last = true
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
 var probs =  [1, 0.6, 2.6, 2.5, 0.2, 0.3, 1.2, 1.2, 0.7, 0.65, 0.75, 0.75, 0.75, 1.2]
@@ -72,15 +73,20 @@ func shaking():
 	shake = false
 
 func _process(delta: float) -> void:
-	
 	if shake: shake_screen()
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
 		if (dragging.on_table and (Coll.collisions <= 1 or (dragging.type >=9 and dragging.type <= 13))):
 			if (Coll.collisions != 0): Coll.collisions = 0
-			Input.set_custom_mouse_cursor(table)
-		else: Input.set_custom_mouse_cursor(no_table)
+			if (dragging.on_table != last):
+				Input.set_custom_mouse_cursor(table)
+				last = true
+				print("table")
+		elif(dragging.on_table != last):
+			last = false
+			Input.set_custom_mouse_cursor(no_table)
+			print("nontable")
 	rest -= delta
 	var t = int(rest)+1
 	label.text = str(t)
