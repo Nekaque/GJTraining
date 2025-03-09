@@ -9,7 +9,7 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [1, 1, 0, 0, 1, 2, 2,3 ,1]
+var probs = [1, 1, 4, 1, 1, 2, 2,3 ,1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -90,9 +90,7 @@ func _input(event: InputEvent) -> void:
 				dragging.init_pos = dragging.position
 				if (dragging.from >= 0):
 					score+=1
-					if (score%5 == 0):
-						scale*=1.1
-						time -= 1
+					if (score%5 == 0): time -= 1
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
@@ -111,11 +109,11 @@ func _on_timer_timeout() -> void:
 		rest = time
 		timer.wait_time = time
 		timer.start(0)
-	else:
-		label.text = 'get rekt'
-		$End.visible = true
-		dragging = null
-		get_tree().paused = true
+	#else:
+		#label.text = 'get rekt'
+		#$End.visible = true
+		#dragging = null
+		#get_tree().paused = true
 
 
 func _on_texture_button_pressed() -> void:

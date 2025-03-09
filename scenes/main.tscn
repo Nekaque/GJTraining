@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcw1ii08dfkpe"]
+[gd_scene load_steps=21 format=3 uid="uid://dcw1ii08dfkpe"]
 
 [ext_resource type="Texture2D" uid="uid://ycdnt5vei0jm" path="res://assets/backgrounds/layout_temp.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_sugp2"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://bsl7v6g2gc1h5" path="res://assets/backgrounds/end.png" id="7_o6xl0"]
 [ext_resource type="FontFile" uid="uid://ctmyhkfdv32rt" path="res://assets/fonts/ConcertOne-Regular.ttf" id="8_3xlq0"]
 [ext_resource type="Texture2D" uid="uid://crw3sy06516dt" path="res://assets/buttons/kolecka.png" id="9_5pd4y"]
+[ext_resource type="Texture2D" uid="uid://dbgs3afq1gt26" path="res://assets/buttons/restart1.png" id="9_8kxpl"]
+[ext_resource type="Texture2D" uid="uid://cgqd5jageq8fb" path="res://assets/buttons/restart2.png" id="10_3py6s"]
+[ext_resource type="Texture2D" uid="uid://28723hqxnt51" path="res://assets/buttons/mm1.png" id="11_j5d7w"]
+[ext_resource type="Texture2D" uid="uid://dthxyl3b8m4tr" path="res://assets/buttons/mm2.png" id="12_hfj15"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(851, 649)
@@ -124,7 +128,6 @@ texture_normal = ExtResource("6_tefeu")
 
 [node name="End" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="End"]
 offset_right = 1024.0
@@ -142,27 +145,21 @@ theme_override_font_sizes/font_size = 72
 text = "1000"
 horizontal_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="End"]
-visible = false
-offset_left = 455.0
-offset_top = 474.0
-offset_right = 501.0
-offset_bottom = 524.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_tefeu")
+[node name="restart" type="TextureButton" parent="End"]
+offset_left = 723.0
+offset_top = 505.0
+offset_right = 977.0
+offset_bottom = 667.0
+texture_normal = ExtResource("9_8kxpl")
+texture_hover = ExtResource("10_3py6s")
 
-[node name="restart" type="Button" parent="End"]
-offset_left = 829.0
-offset_top = 566.0
-offset_right = 904.0
-offset_bottom = 597.0
-text = "RESTART"
-
-[node name="main_menu" type="Button" parent="End"]
+[node name="main_menu" type="TextureButton" parent="End"]
 offset_left = 45.0
-offset_top = 519.0
-offset_right = 287.0
-offset_bottom = 680.0
+offset_top = 513.0
+offset_right = 301.0
+offset_bottom = 675.0
+texture_normal = ExtResource("11_j5d7w")
+texture_hover = ExtResource("12_hfj15")
 
 [node name="kolecka" type="Node2D" parent="."]
 

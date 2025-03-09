@@ -24,6 +24,9 @@ func _on_mouse_exited() -> void:
 	Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 
 func _on_area_entered(area: Area2D) -> void:
+	print('entered: ', area.name)
+	print('collisions: ', Coll.collisions)
+	print('from: ', from)
 	if (area.is_in_group('Items') and from == -1): Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
