@@ -56,7 +56,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6plaw")
 }],
-"loop": true,
+"loop": false,
 "name": &"koleckos",
 "speed": 5.0
 }]
@@ -170,35 +170,30 @@ texture_hover = ExtResource("12_hfj15")
 position = Vector2(78, 121)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"koleckos"
-autoplay = "koleckos"
 frame_progress = 0.802991
 
 [node name="kolecko2" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(78, 263)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"koleckos"
-autoplay = "koleckos"
 frame_progress = 0.105747
 
 [node name="kolecko3" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(79, 404)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"koleckos"
-autoplay = "koleckos"
 frame_progress = 0.610203
 
 [node name="kolecko4" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(77, 546)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"koleckos"
-autoplay = "koleckos"
 frame_progress = 0.733293
 
 [node name="kolecko5" type="AnimatedSprite2D" parent="kolecka"]
 position = Vector2(77, 687)
 sprite_frames = SubResource("SpriteFrames_qdrhg")
 animation = &"koleckos"
-autoplay = "koleckos"
 frame_progress = 0.104693
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
