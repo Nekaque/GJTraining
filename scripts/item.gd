@@ -34,7 +34,7 @@ func _on_table_colider_area_exited(area: Area2D) -> void:
 
 func setup(i, num):
 	_ready()
-	global_scale = Vector2(0.25,0.25)
+	global_scale = Vector2(0.4,0.4)
 	sprite.animation = animations[num]
 	for collider in colliders: collider.disabled = true
 	colliders[num].disabled = false

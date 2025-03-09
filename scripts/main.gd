@@ -20,7 +20,7 @@ func _ready() -> void:
 	get_tree().paused = Coll.tutorial
 
 func generate():
-	scale = Vector2(1,1)
+	scale = Vector2(0.8, 0.8)
 	time = 5
 	score = 0
 	for i in len(occupied): create_item(i)
@@ -74,7 +74,7 @@ func _input(event: InputEvent) -> void:
 		elif dragging:
 			if Coll.collisions >= 1 or !dragging.on_table:
 				dragging.position = dragging.init_pos
-				if (dragging.from >= 0): dragging.global_scale = Vector2(0.25,0.25)
+				if (dragging.from >= 0): dragging.global_scale = Vector2(0.4,0.4)
 				dragging = null
 			else: 
 				dragging.init_pos = dragging.position
