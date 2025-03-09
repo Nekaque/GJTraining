@@ -14,7 +14,7 @@ func _ready() -> void: pass
 
 func _on_mouse_entered() -> void:
 	mouse_in = true
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	Input.set_custom_mouse_cursor(load("res://assets/buttons/hand_hover.png"))
 
 func _on_mouse_exited() -> void:
 	mouse_in = false
