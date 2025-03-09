@@ -2,13 +2,11 @@ extends Node
 
 var collisions = 0
 var tutorial = true
-@onready var music = $Music
-@onready var sfx = $SFX
 
-func _ready() -> void:
-	pass
 
-func set_volume(volume):
-	_ready()
-	music.volume_db = volume
-	sfx.volume_db = volume
+func _on_music_ready() -> void:
+	$Music.volume_db = 0
+
+
+func _on_sfx_ready() -> void:
+	$SFX.volume_db = 0
