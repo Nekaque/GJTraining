@@ -71,6 +71,7 @@ func shaking():
 	shake = false
 
 func _process(delta: float) -> void:
+	
 	if shake: shake_screen()
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
@@ -122,7 +123,11 @@ func _input(event: InputEvent) -> void:
 					dragging.placed()
 					$Music/Place_on_table.play()
 				dragging = null
-	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
+	elif (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
+	elif (event.is_action_pressed("collision")):
+		for x in items:
+			if (x.collided): print(x.get_groups())
+		
 
 func power_up():
 	$Music/Upgrade.play()
