@@ -109,11 +109,11 @@ func _on_timer_timeout() -> void:
 		rest = time
 		timer.wait_time = time
 		timer.start(0)
-	#else:
-		#label.text = 'get rekt'
-		#$End.visible = true
-		#dragging = null
-		#get_tree().paused = true
+	else:
+		label.text = 'get rekt'
+		$End.visible = true
+		dragging = null
+		get_tree().paused = true
 
 
 func _on_texture_button_pressed() -> void:
