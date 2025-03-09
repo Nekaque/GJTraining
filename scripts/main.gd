@@ -33,7 +33,6 @@ func tut(show):
 	
 
 func generate():
-	print(items)
 	scale = Vector2(0.8, 0.8)
 	Coll.collisions = 0
 	time = 5
@@ -80,7 +79,7 @@ func _process(delta: float) -> void:
 		dragging.position = get_viewport().get_mouse_position()
 		if (dragging.on_table and (Coll.collisions <= 1 or (dragging.type >=9 and dragging.type <= 13))):
 			if Coll.collisions >= 0:
-				for x in items: x.collide = false	
+				for x in items: x.collided = false	
 			if (Coll.collisions != 0): Coll.collisions = 0
 			Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
@@ -184,7 +183,7 @@ func clean():
 	dragging = null
 	items = legit
 	Coll.collisions = 0
-	for x in items: x.collide = false
+	for x in items: x.collided = false
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
