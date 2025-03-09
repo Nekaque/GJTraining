@@ -6,7 +6,7 @@ var items = []
 var occupied  = [true, true, true, true, true]
 var rest = 0
 var score = 0
-var time = 5
+var time = 50
 var random = RandomNumberGenerator.new()
 var probs = [4, 5, 0, 0, 0, 4, 4,4 ,4]
 var shake = false
@@ -15,7 +15,7 @@ var shake = false
 
 func _ready() -> void:
 	generate()
-	get_tree().paused = true
+	#get_tree().paused = true
 
 func generate():
 	for i in len(occupied): create_item(i)
@@ -24,7 +24,7 @@ func generate():
 	rest = time
 	var t = int(rest)
 	label.text = 'Next item in '+str(t)
-	$Score.text = 'Score: '+str(score)
+	$End/Score.text = str(score)
 	
 
 func create_item(i):
@@ -58,19 +58,22 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_action_pressed('click'):
-			for it in items:
-				if it.mouse_in and it.movable:
-					dragging = it
-					dragging.global_scale = Vector2(1,1)
+			if (!dragging):
+				for it in items:
+					if it.mouse_in and it.movable:
+						dragging = it
+						dragging.global_scale = Vector2(1,1)
+						break
 		elif dragging:
 			if Coll.collisions >= 1 or !dragging.on_table:
 				dragging.position = dragging.init_pos
-				dragging.global_scale = Vector2(0.25,0.25)
+				if (dragging.from >= 1): dragging.global_scale = Vector2(0.25,0.25)
+				dragging = null
 			else: 
 				dragging.init_pos = dragging.position
 				if (dragging.from >= 0):
 					score+=1
-					$Score.text = 'Score: '+str(score)
+					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.from = -1
 					dragging.start_animation()

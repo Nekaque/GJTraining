@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GJTraining"
-run/main_scene="uid://cpg54jnpcpset"
+run/main_scene="uid://dcw1ii08dfkpe"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://2b4xffnbhdu1"
 config/windows_native_icon="res://assets/icon.ico"
