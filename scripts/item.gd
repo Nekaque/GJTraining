@@ -16,7 +16,7 @@ var hover = load("res://assets/buttons/hand_hover.png")
 var default = load("res://assets/buttons/hand_default.png")
 var collided = false
 var is_cleanable = [true, false, true, true, false, false, false, false, false, false, false, false, false, false]
-var is_movable = [true, true, true, true, false, false, true, true, true, false, false, false, false, false]
+var is_movable = [true, true, true, true, false, false, true, true, true, false, false, false, false, true]
 
 
 

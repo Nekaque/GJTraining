@@ -10,7 +10,7 @@ var time
 var scale
 var random = RandomNumberGenerator.new()
 # ['steak', 'book', 'coffee', 'can', 'pc', 'cactus', 'pencil', 'pen', 'plant']
-var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 0.5, 0.5, 0.5, 2]
+var probs = [1, 0.6, 3, 3, 0.2, 0.3, 1.2, 1.2, 0.7, 0.5, 5, 0.5, 0.5, 1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -75,7 +75,8 @@ func _process(delta: float) -> void:
 	else: $Cam.position = Vector2(512,384)
 	if dragging:
 		dragging.position = get_viewport().get_mouse_position()
-		if (dragging.on_table and Coll.collisions == 0): Input.set_custom_mouse_cursor(table)
+		print(dragging.on_table)
+		if (dragging.on_table and (Coll.collisions == 0 or dragging.type == 13)): Input.set_custom_mouse_cursor(table)
 		else: Input.set_custom_mouse_cursor(no_table)
 	rest -= delta
 	var t = int(rest)+1
@@ -95,7 +96,8 @@ func _input(event: InputEvent) -> void:
 							$Music/Pick_up_item.play()
 							if dragging.type == 13: dragging.animate()
 							break
-						else: shaking()
+						else:
+							shaking()
 		elif dragging:
 			Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 			if Coll.collisions >= 1 or !dragging.on_table:
