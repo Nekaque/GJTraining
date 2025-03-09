@@ -23,12 +23,14 @@ var is_movable = [true, true, true, true, false, false, true, true, true, false,
 func _ready() -> void: pass
 
 func _on_mouse_entered() -> void:
-	mouse_in = true
-	Input.set_custom_mouse_cursor(hover)
+	if (on_table):
+		mouse_in = true
+		Input.set_custom_mouse_cursor(hover)
 
 func _on_mouse_exited() -> void:
-	mouse_in = false
-	Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
+	if (on_table):
+		mouse_in = false
+		Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group('Items'):
@@ -89,3 +91,17 @@ func placed():
 func _on_sprite_animation_finished() -> void:
 	movable = is_movable[type]
 	cleanable = is_cleanable[type]
+
+
+func _on_table_colider_mouse_entered() -> void:
+	if !on_table:
+		mouse_in = true
+		Input.set_custom_mouse_cursor(hover)
+		
+	
+
+
+func _on_table_colider_mouse_exited() -> void:
+	if !on_table:
+		mouse_in = false
+		Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))

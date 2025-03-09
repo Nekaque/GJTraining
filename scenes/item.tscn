@@ -1,7 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://v837py5854ak"]
+[gd_scene load_steps=15 format=3 uid="uid://v837py5854ak"]
 
 [ext_resource type="SpriteFrames" uid="uid://i3q5stne2j80" path="res://assets/animations.tres" id="1_4gq7n"]
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_s8enn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rdvnh"]
+radius = 94.4299
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8enn"]
 size = Vector2(5, 3.5)
@@ -43,11 +46,14 @@ script = ExtResource("1_s8enn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_4gq7n")
-animation = &"cleanup"
-frame = 1
-frame_progress = 1.0
+animation = &"coffee"
 
 [node name="TableColider" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="MouseCollision" type="CollisionShape2D" parent="TableColider"]
+shape = SubResource("CircleShape2D_rdvnh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TableColider"]
 visible = false
@@ -65,6 +71,7 @@ position = Vector2(1.5, 6)
 shape = SubResource("RectangleShape2D_6muww")
 
 [node name="CoffeeCollider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-28, 1)
 rotation = -0.0742677
 shape = SubResource("CircleShape2D_d265e")
@@ -110,3 +117,5 @@ shape = SubResource("CircleShape2D_pqv7c")
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="area_entered" from="TableColider" to="." method="_on_table_colider_area_entered"]
 [connection signal="area_exited" from="TableColider" to="." method="_on_table_colider_area_exited"]
+[connection signal="mouse_entered" from="TableColider" to="." method="_on_table_colider_mouse_entered"]
+[connection signal="mouse_exited" from="TableColider" to="." method="_on_table_colider_mouse_exited"]
