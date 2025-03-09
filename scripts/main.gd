@@ -9,7 +9,7 @@ var score
 var time
 var scale
 var random = RandomNumberGenerator.new()
-var probs = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1, 1]
+var probs = [5, 0, 0, 0, 0, 0, 0, 0 ,0, 1, 1, 1,1, 1]
 var shake = false
 var holding = load("res://assets/buttons/hand_holding.png")
 var default = load("res://assets/buttons/hand_default.png")
@@ -75,7 +75,6 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_action_pressed('click'):
-			#print(items)
 			if (!dragging):
 				for it in items:
 					if it.mouse_in:
@@ -98,13 +97,24 @@ func _input(event: InputEvent) -> void:
 			else:
 				dragging.init_pos = dragging.position
 				if dragging.type == 13: clean()
+				elif dragging.type >=9 and dragging.type <= 12:
+					Coll.is_stackable[dragging.type-9] = true
+					probs[dragging.type] = 0
+					occupied[dragging.from] = false
+					for i in len(items):
+						if (items[i] == dragging):
+							items.pop_at(i)
+							break
+					dragging.queue_free()
+					dragging = null
+					
 				elif (dragging.from >= 0):
 					score+=1
 					if (score%5 == 0): time -= 1
 					$End/Score.text = str(score)
 					occupied[dragging.from] = false
 					dragging.placed()
-					dragging = null
+				dragging = null
 	if (event.is_action_pressed("rotate") and dragging): dragging.rotate(deg_to_rad(90))
 
 
@@ -140,7 +150,6 @@ func clean():
 	for it in free: it.queue_free()
 	dragging = null
 	items = legit
-	Coll.collisions = 0
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false

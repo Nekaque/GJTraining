@@ -17,7 +17,6 @@ var default = load("res://assets/buttons/hand_default.png")
 var collided = false
 var is_cleanable = [true, false, true, true, false, false, false, false, false, false, false, false, false, false]
 var is_movable = [true, true, true, true, false, false, true, true, true, false, false, false, false, false]
-var is_stackable = [true, true, true, true, false, false, false, false, false, false, false, false, false, false]
 
 
 
@@ -32,17 +31,16 @@ func _on_mouse_exited() -> void:
 	Input.set_custom_mouse_cursor(default, 0, Vector2(2,2))
 
 func _on_area_entered(area: Area2D) -> void:
-	#print('entered: ', area.name)
-	#print('collisions: ', Coll.collisions)
-	#print('from: ', from)
 	if area.is_in_group('Items'):
-		collided  = true
-		Coll.collisions +=1
+		if !(stackable and area.is_in_group(animations[type])):
+			collided = true
+			Coll.collisions +=1
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group('Items'):
-		collided = false
-		Coll.collisions -=1
+		if !(stackable and area.is_in_group(animations[type])):
+			collided = false
+			Coll.collisions -=1
 
 func _on_table_colider_area_entered(area: Area2D) -> void:
 	if (area.name == 'Table'): on_table = true
@@ -55,9 +53,10 @@ func setup(i, num):
 	global_scale = Vector2(0.4,0.4)
 	sprite.animation = animations[num]
 	for collider in colliders: collider.disabled = true
+	add_to_group(animations[num])
 	colliders[num].disabled = false
 	cleanable = is_cleanable[num]
-	stackable = is_stackable[num]
+	stackable = Coll.is_stackable[num]
 	position = Vector2(70, i*142 + 112)
 	init_pos = position
 	from = i
