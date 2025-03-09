@@ -18,7 +18,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	mouse_in = false
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(load("res://assets/buttons/hand_default.png"))
 
 func _on_area_entered(area: Area2D) -> void:
 	if (area.is_in_group('Items') and from == -1): Coll.collisions +=1
