@@ -14,4 +14,3 @@ func _on_music_ready() -> void:
 func _on_sfx_ready() -> void:
 	$SFX.volume_db = 0
 	sfx = $SFX
-	
